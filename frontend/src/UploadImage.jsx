@@ -1,7 +1,7 @@
 import { useState, useRef } from 'react'
-import './App.css'
+import './UploadImage.css'
 
-function App() {
+function UploadImage() {
   const [selectedImage, setSelectedImage] = useState(null)
   const [previewUrl, setPreviewUrl] = useState(null)
   const [isUploading, setIsUploading] = useState(false)
@@ -137,4 +137,4 @@ function App() {
   )
 }
 
-export default App
+export default UploadImage
