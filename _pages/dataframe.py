@@ -5,17 +5,17 @@ import random
 def get_waste_image(label):
     """쓰레기 종류에 따른 이미지 URL 반환"""
     images = {
-        "Fish_net": "https://via.placeholder.com/400x300/4A90E2/FFFFFF?text=어망",
-        "Fish_trap": "https://via.placeholder.com/400x300/50C878/FFFFFF?text=어구", 
-        "Glass": "https://via.placeholder.com/400x300/87CEEB/FFFFFF?text=유리",
-        "Metal": "https://via.placeholder.com/400x300/C0C0C0/FFFFFF?text=금속",
-        "Plastic": "https://via.placeholder.com/400x300/32CD32/FFFFFF?text=플라스틱",
-        "Rope": "https://via.placeholder.com/400x300/8B4513/FFFFFF?text=로프",
-        "Rubber_etc": "https://via.placeholder.com/400x300/000000/FFFFFF?text=고무류",
-        "Rubber_tire": "https://via.placeholder.com/400x300/2F4F4F/FFFFFF?text=고무타이어",
-        "Wood": "https://via.placeholder.com/400x300/DEB887/FFFFFF?text=목재"
+        "Fish_net": "https://picsum.photos/400/300?random=1",
+        "Fish_trap": "https://picsum.photos/400/300?random=2", 
+        "Glass": "https://picsum.photos/400/300?random=3",
+        "Metal": "https://picsum.photos/400/300?random=4",
+        "Plastic": "https://picsum.photos/400/300?random=5",
+        "Rope": "https://picsum.photos/400/300?random=6",
+        "Rubber_etc": "https://picsum.photos/400/300?random=7",
+        "Rubber_tire": "https://picsum.photos/400/300?random=8",
+        "Wood": "https://picsum.photos/400/300?random=9"
     }
-    return images.get(label, "https://via.placeholder.com/400x300/808080/FFFFFF?text=기타")
+    return images.get(label, "https://picsum.photos/400/300?random=10")
 
 def get_waste_category(label):
     """쓰레기 종류를 한국어 카테고리로 변환"""
@@ -223,27 +223,8 @@ def dataframe_page():
                     st.markdown('<div class="waste-card">', unsafe_allow_html=True)
                     
                     # 이미지
-                    try:
-                        image_url = get_waste_image(row['Label'])
-                        st.image(image_url, use_container_width=True)
-                    except Exception as e:
-                        # 이미지 로딩 실패시 대체 텍스트 표시
-                        st.markdown(f"""
-                        <div style="
-                            width: 100%; 
-                            height: 200px; 
-                            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-                            display: flex; 
-                            align-items: center; 
-                            justify-content: center; 
-                            border-radius: 10px;
-                            color: white;
-                            font-size: 18px;
-                            font-weight: bold;
-                        ">
-                            {get_waste_category(row['Label'])}
-                        </div>
-                        """, unsafe_allow_html=True)
+                    image_url = get_waste_image(row['Label'])
+                    st.image(image_url, use_container_width=True)
                     
                     # 주요 정보
                     st.markdown(f"**주요 쓰레기**: {get_waste_category(row['Label'])}")
