@@ -12,7 +12,7 @@ st.set_page_config(page_title="Ocean Clean AI", layout="wide")
 st.sidebar.title("🌊 Ocean Clean AI")
 page = st.sidebar.radio(
     "메뉴를 선택하세요",
-    ("홈", "데이터프레임", "차트", "지도", "애니메이션")
+    ("홈", "데이터프레임", "차트", "지도", "업로드")
 )
 
 # 홈
@@ -138,12 +138,48 @@ elif page == "지도":
     m.get_root().html.add_child(folium.Element(legend_html))
     st_folium(m, width=950, height=600)
 
-# 애니메이션
-elif page == "애니메이션":
-    st.title("🌀 Animation Demo")
-    st.write("진행 상황 표시:")
-    my_bar = st.progress(0)
-    for percent_complete in range(100):
-        time.sleep(0.01)
-        my_bar.progress(percent_complete + 1)
-    st.success("완료되었습니다!")
+elif page == "업로드":
+    st.markdown(
+       "<div style='font-size: 32px; font-weight: bold;'> 해양 쓰레기 사진을 업로드 후, <br> 아래 분석 결과를 확인해주세요! 📷</div>", 
+       unsafe_allow_html=True
+   )
+
+    st.markdown("<div style='margin-top: 40px;'></div>", unsafe_allow_html=True)
+
+    # 파일 업로더 (라벨 숨김)
+    uploaded_file = st.file_uploader(
+        label="",  # 기본 라벨 제거
+        type=["jpg", "jpeg", "png"],
+        label_visibility="collapsed"
+    )
+
+    # 업로드된 이미지가 있으면 화면에 표시
+    if uploaded_file is not None:
+        st.image(uploaded_file, caption="업로드한 이미지", use_container_width=True)
+
+        # 여유 공간 추가
+        st.markdown("---")
+        st.write("")
+        st.write("분석 진행 상황 :")
+
+        # 진행 표시줄
+        my_bar = st.progress(0)
+        for percent_complete in range(100):
+            time.sleep(0.07)
+            my_bar.progress(percent_complete + 1)
+
+        st.success("완료되었습니다!")
+
+        st.markdown("---")
+        st.subheader("📍 분석 결과")
+        st.write("2개의 플라스틱 쓰레기")
+        st.write("Latitude: 355")
+        st.write("Longitude: 277")
+        st.write("위험도: 3.84")
+        st.markdown("---")
+        st.markdown(
+          "<div style='font-size: 18px; font-weight: bold;'> 해당 이미지와 분석 결과를 신고 접수하였습니다. 감사합니다!😉</div>", 
+       unsafe_allow_html=True
+   )
+    else:
+        st.info("사진을 업로드하면 애니메이션이 시작됩니다.")
