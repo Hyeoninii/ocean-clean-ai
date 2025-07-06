@@ -9,21 +9,21 @@ page = st.sidebar.radio(
 )
 
 if page == "홈":
-    from pages.home import home_page
+    from _pages.home import home_page
     home_page()
 
 elif page == "데이터프레임":
-    from pages.dataframe import dataframe_page
+    from _pages.dataframe import dataframe_page
     dataframe_page()
 
 elif page == "차트":
-    from pages.chart import chart_page
+    from _pages.chart import chart_page
     chart_page()
 
 elif page == "지도":
-    from pages.map import map_page
+    from _pages.map import map_page
     map_page()
 
 elif page == "업로드":
-    from pages.upload import upload_page
+    from _pages.upload import upload_page
     upload_page()
