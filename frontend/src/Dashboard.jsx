@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import { Link } from 'react-router-dom'
 import UploadImage from './UploadImage.jsx'
+import Map from './Map.jsx'
 import './Dashboard.css'
 
 function Dashboard() {
@@ -21,13 +22,17 @@ function Dashboard() {
           <ul>
             <li><button className={`sidebar-link${activeTab === 'dashboard' ? ' active' : ''}`} onClick={() => setActiveTab('dashboard')}>대시보드</button></li>
             <li><button className={`sidebar-link${activeTab === 'upload' ? ' active' : ''}`} onClick={() => setActiveTab('upload')}>업로드 하러 가기</button></li>
-            <li><button className={`sidebar-link${activeTab === 'upload' ? ' active' : ''}`} onClick={() => setActiveTab('upload')}>지도</button></li>
+            <li><button className={`sidebar-link${activeTab === 'map' ? ' active' : ''}`} onClick={() => setActiveTab('map')}>지도</button></li>
           </ul>
         </aside>
 
         {/* 메인 컨텐츠 */}
         <main className="dashboard-main">
-        <div className="dashboard-stats">
+          <div className="main-content-box">
+            {activeTab === 'dashboard' && (
+              <>
+                <h1>메인 대시보드</h1>
+                <div className="dashboard-stats">
                   <div className="stat-box">
                     <span className="stat-label">오늘 업로드</span>
                     <span className="stat-value">{todayUploads}건</span>
@@ -37,11 +42,6 @@ function Dashboard() {
                     <span className="stat-value">{totalUploads}건</span>
                   </div>
                 </div>
-          <div className="main-content-box">
-         
-            {activeTab === 'dashboard' && (
-              <>
-                
                 <div className="dashboard-info">
                   <p>여기에 앞으로 다양한 통계, 최근 업로드, 알림, 메뉴 등을 추가할 수 있습니다.</p>
                 </div>
@@ -49,6 +49,9 @@ function Dashboard() {
             )}
             {activeTab === 'upload' && (
               <UploadImage />
+            )}
+            {activeTab === 'map' && (
+              <Map />
             )}
           </div>
         </main>
