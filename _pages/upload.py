@@ -1,5 +1,7 @@
 import streamlit as st
 import time
+import os
+from datetime import datetime
 
 def upload_page():
     st.markdown(
@@ -12,6 +14,17 @@ def upload_page():
     uploaded_file = st.file_uploader(label="", type=["jpg", "jpeg", "png"], label_visibility="collapsed")
 
     if uploaded_file is not None:
+        # 파일 저장 경로 및 이름 생성
+        upload_dir = "_uploads"
+        os.makedirs(upload_dir, exist_ok=True)
+        file_ext = os.path.splitext(uploaded_file.name)[1]
+        timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
+        save_filename = f"upload_{timestamp}{file_ext}"
+        save_path = os.path.join(upload_dir, save_filename)
+        # 파일 저장
+        with open(save_path, "wb") as f:
+            f.write(uploaded_file.getbuffer())
+        st.success(f"이미지가 성공적으로 저장되었습니다: {save_filename}")
         st.image(uploaded_file, caption="업로드한 이미지", use_container_width=True)
         st.markdown("---")
         st.write("분석 진행 상황 :")
