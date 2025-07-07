@@ -1,3 +1,11 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+.Python
+venv/
+.env
+
 # Dependencies
 node_modules/
 npm-debug.log*
@@ -9,7 +17,7 @@ build/
 dist/
 
 # Environment variables
-.envk
+.env
 .env.local
 .env.development.local
 .env.test.local
@@ -43,8 +51,8 @@ pids
 # Coverage directory used by tools like istanbul
 coverage/
 
-# Uploaded files (server/uploads)
-server/uploads/
+# Uploaded files
+_uploads/
 
 # Temporary files
 tmp/
