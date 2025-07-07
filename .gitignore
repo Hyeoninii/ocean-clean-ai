@@ -4,6 +4,7 @@ __pycache__/
 *$py.class
 .Python
 venv/
+requirements.txt
 .env
 
 # Dependencies
