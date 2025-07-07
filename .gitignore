@@ -51,9 +51,6 @@ pids
 # Coverage directory used by tools like istanbul
 coverage/
 
-# Uploaded files
-_uploads/
-
 # Temporary files
 tmp/
 temp/
