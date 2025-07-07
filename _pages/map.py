@@ -31,6 +31,7 @@ def map_page():
             else:
                 return "greenyellow"
 
+
         label_kor_map = {
             "Fish_net": "어망", "Plastic": "플라스틱", "Glass": "유리", "Metal": "금속",
             "Rope": "밧줄", "Wood": "목재", "Buoy": "부표", "Styrofoam": "스티로폼", "Trap": "통발",
@@ -56,7 +57,6 @@ def map_page():
                 popup_html += f'<img src="data:image/jpeg;base64,{encoded}" width="250">'
             else:
                 popup_html += '<i>이미지 없음</i>'
-
 
             folium.CircleMarker(
                 location=[lat, lon],
