@@ -1,6 +1,7 @@
 import streamlit as st
 import pandas as pd
 import random
+import os
 
 def get_waste_image(label):
     """쓰레기 종류에 따른 이미지 URL 반환"""
@@ -121,7 +122,8 @@ def dataframe_page():
     st.title("🌊 해양 쓰레기 탐지 데이터")
     
     # 데이터 로드
-    df = pd.read_csv("ocean_risk.csv")
+    # df = pd.read_csv("ocean_risk.csv")
+    df = pd.read_csv("test.csv")
     
     # 검색 및 필터링 옵션
     col1, col2 = st.columns(2)
@@ -200,39 +202,45 @@ def dataframe_page():
         for i, (_, row) in enumerate(page_df.iterrows()):
             col_idx = i % 3
             with cols[col_idx]:
-                with st.container():
-                    st.markdown("""
-                    <style>
-                    .waste-card {
-                        border: 1px solid #ddd;
-                        border-radius: 10px;
-                        padding: 15px;
-                        margin: 10px 0;
-                        background: white;
-                        box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-                    }
-                    .waste-card:hover {
-                        box-shadow: 0 4px 8px rgba(0,0,0,0.15);
-                        transform: translateY(-2px);
-                        transition: all 0.3s ease;
-                    }
-                    </style>
-                    """, unsafe_allow_html=True)
-                    
-                    # 카드 시작
-                    st.markdown('<div class="waste-card">', unsafe_allow_html=True)
-                    
-                    # 이미지
+                # 이미지 (카드 div 바깥에 위치)
+                file_name = row['File']
+                local_image_path = f"_uploads/{file_name.replace('.json', '.jpg')}"
+                if os.path.exists(local_image_path):
+                    st.image(local_image_path, use_container_width=True)
+                else:
                     image_url = get_waste_image(row['Label'])
                     st.image(image_url, use_container_width=True)
-                    
-                    # 주요 정보
-                    st.markdown(f"**주요 쓰레기**: {get_waste_category(row['Label'])}")
-                    st.markdown(f"**위험도**: {row['RiskScore']:.1f} ({get_risk_level(row['RiskScore'])})")
-                    st.markdown(f"**위치**: {get_location_name(row['Latitude'], row['Longitude'])}")
-                    
-                    # 카드 끝
-                    st.markdown('</div>', unsafe_allow_html=True)
+
+                # waste-card div 제거, 버튼/텍스트만 심플하게 표시
+                # 주요 정보
+                st.markdown(f"**주요 쓰레기**: {get_waste_category(row['Label'])}")
+                st.markdown(f"**위험도**: {row['RiskScore']:.1f} ({get_risk_level(row['RiskScore'])})")
+                st.markdown(f"**위치**: {get_location_name(row['Latitude'], row['Longitude'])}")
+
+                # 치워야 할 쓰레기 추천 버튼
+                vote_key = f"vote_{file_name}"
+                if vote_key not in st.session_state:
+                    st.session_state[vote_key] = 0
+                if st.button("🧹 치워야 할 쓰레기 추천", key=f"btn_{file_name}"):
+                    st.session_state[vote_key] += 1
+                st.markdown(f"**추천수:** {st.session_state[vote_key]}")
+
+                # 관심 쓰레기(즐겨찾기) 버튼
+                fav_key = f"fav_{file_name}"
+                if fav_key not in st.session_state:
+                    st.session_state[fav_key] = False
+                if st.button("⭐ 관심 쓰레기", key=f"favbtn_{file_name}"):
+                    st.session_state[fav_key] = not st.session_state[fav_key]
+                if st.session_state[fav_key]:
+                    st.markdown("<span style='color:gold;font-size:20px;'>★ 관심 등록됨</span>", unsafe_allow_html=True)
+
+                # 간단한 댓글 입력/표시
+                comment_key = f"comment_{file_name}"
+                comment = st.text_input("댓글을 남겨보세요!", key=f"commentbox_{file_name}")
+                if comment:
+                    st.session_state[comment_key] = comment
+                if comment_key in st.session_state:
+                    st.markdown(f"💬 {st.session_state[comment_key]}")
     else:
         st.warning("조건에 맞는 데이터가 없습니다.")
     

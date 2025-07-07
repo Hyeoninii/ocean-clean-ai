@@ -5,7 +5,8 @@ from streamlit_folium import st_folium
 
 def map_page():
     st.title("🗺️ 해양 쓰레기 위험 지도")
-    df = pd.read_csv("ocean_risk.csv")
+    # df = pd.read_csv("ocean_risk.csv")
+    df = pd.read_csv("test.csv")
 
     min_risk = df["RiskScore"].min()
     max_risk = df["RiskScore"].max()
