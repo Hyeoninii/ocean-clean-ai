@@ -129,10 +129,29 @@ def dataframe_page():
     col1, col2 = st.columns(2)
     
     with col1:
-        waste_type = st.selectbox(
+        # 한글 라벨 리스트 생성
+        label_map = {
+            "Fish_net": "어망",
+            "Fish_trap": "어구",
+            "Glass": "유리",
+            "Metal": "금속",
+            "Plastic": "플라스틱",
+            "Rope": "로프",
+            "Rubber_etc": "고무류",
+            "Rubber_tire": "고무타이어",
+            "Wood": "목재"
+        }
+        label_map_rev = {v: k for k, v in label_map.items()}
+        label_list_kor = [label_map.get(l, l) for l in df['Label'].unique()]
+        waste_type_kor = st.selectbox(
             "쓰레기 종류",
-            ["전체"] + list(df['Label'].unique())
+            ["전체"] + label_list_kor
         )
+        # 선택값을 영어 라벨로 변환
+        if waste_type_kor != "전체":
+            waste_type = label_map_rev[waste_type_kor]
+        else:
+            waste_type = "전체"
     
     with col2:
         risk_filter = st.selectbox(
@@ -224,15 +243,6 @@ def dataframe_page():
                 if st.button("🧹 치워야 할 쓰레기 추천", key=f"btn_{file_name}"):
                     st.session_state[vote_key] += 1
                 st.markdown(f"**추천수:** {st.session_state[vote_key]}")
-
-                # 관심 쓰레기(즐겨찾기) 버튼
-                fav_key = f"fav_{file_name}"
-                if fav_key not in st.session_state:
-                    st.session_state[fav_key] = False
-                if st.button("⭐ 관심 쓰레기", key=f"favbtn_{file_name}"):
-                    st.session_state[fav_key] = not st.session_state[fav_key]
-                if st.session_state[fav_key]:
-                    st.markdown("<span style='color:gold;font-size:20px;'>★ 관심 등록됨</span>", unsafe_allow_html=True)
 
                 # 간단한 댓글 입력/표시
                 comment_key = f"comment_{file_name}"

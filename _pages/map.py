@@ -14,7 +14,7 @@ def map_page():
     )
 
     if map_type == '위험도 등급 지도':
-        df = pd.read_csv("ocean_risk.csv")
+        df = pd.read_csv("test.csv")
 
         quantiles = df['RiskScore'].quantile([0.2, 0.4, 0.6, 0.8]).to_dict()
         q1, q2, q3, q4 = quantiles[0.2], quantiles[0.4], quantiles[0.6], quantiles[0.8]
