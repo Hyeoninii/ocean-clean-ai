@@ -1,0 +1,11 @@
+com/oceanclean/ai/OceanCleanAiApplication.class
+com/oceanclean/ai/service/WasteDataService.class
+com/oceanclean/ai/repository/WasteDataRepository.class
+com/oceanclean/ai/controller/TestController.class
+com/oceanclean/ai/entity/WasteData.class
+com/oceanclean/ai/controller/WasteDataController.class
+com/oceanclean/ai/service/DataInitializationService$1.class
+com/oceanclean/ai/dto/WasteDataDto.class
+com/oceanclean/ai/service/DataInitializationService.class
+com/oceanclean/ai/controller/HomeController.class
+com/oceanclean/ai/config/WebConfig.class
