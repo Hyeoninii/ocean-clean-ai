@@ -188,6 +188,9 @@ const BoundingBoxImage: React.FC<BoundingBoxImageProps> = ({
           borderRadius: '5px',
           fontSize: '12px'
         }}>
+          <div style={{ marginBottom: '8px', fontWeight: 'bold', color: '#667eea' }}>
+            📊 총 {detections.length}개의 객체 탐지됨
+          </div>
           <strong>감지된 객체:</strong>
           {detections.map((detection, index) => {
             const riskScore = calculateRiskScore(detection.class, detection.confidence);

@@ -1,0 +1,672 @@
+[
+  {
+    "fileName": "2022-Fish_net-02308.json",
+    "latitude": 35.0871833333333,
+    "longitude": 129.077716666667,
+    "label": "Fish_net",
+    "weight": 4.5,
+    "cluster": 3,
+    "riskScore": 3.58397328881469,
+    "imagePath": "data/images/2022-Fish_net-02308.jpg"
+  },
+  {
+    "fileName": "2022-Fish_net-02399.json",
+    "latitude": 35.1386333333333,
+    "longitude": 129.114216666667,
+    "label": "Fish_net",
+    "weight": 4.5,
+    "cluster": 1,
+    "riskScore": 3.56219512195122,
+    "imagePath": "data/images/2022-Fish_net-02399.jpg"
+  },
+  {
+    "fileName": "2022-Fish_net-02562.json",
+    "latitude": 35.1384666666667,
+    "longitude": 129.1143,
+    "label": "Fish_net",
+    "weight": 4.5,
+    "cluster": 1,
+    "riskScore": 3.56219512195122,
+    "imagePath": "data/images/2022-Fish_net-02562.jpg"
+  },
+  {
+    "fileName": "2022-Etc-Fish_trap-00404.json",
+    "latitude": 35.0871833333333,
+    "longitude": 129.077716666667,
+    "label": "Fish_trap",
+    "weight": 3.0,
+    "cluster": 3,
+    "riskScore": 3.58397328881469,
+    "imagePath": "data/images/2022-Etc-Fish_trap-00404.jpg"
+  },
+  {
+    "fileName": "2022-Etc-Fish_trap-00606.json",
+    "latitude": 35.1386,
+    "longitude": 129.114233333333,
+    "label": "Fish_trap",
+    "weight": 3.0,
+    "cluster": 1,
+    "riskScore": 3.56219512195122,
+    "imagePath": "data/images/2022-Etc-Fish_trap-00606.jpg"
+  },
+  {
+    "fileName": "2022-Etc-Fish_trap-07112.json",
+    "latitude": 35.0682,
+    "longitude": 129.0647,
+    "label": "Fish_trap",
+    "weight": 3.0,
+    "cluster": 3,
+    "riskScore": 3.58397328881469,
+    "imagePath": "data/images/2022-Etc-Fish_trap-07112.jpg"
+  },
+  {
+    "fileName": "2022-Etc-Fish_trap-Glass-81286.json",
+    "latitude": 34.8328,
+    "longitude": 128.715567,
+    "label": "Glass",
+    "weight": 3.8,
+    "cluster": 8,
+    "riskScore": 3.27245762711864,
+    "imagePath": "data/images/2022-Etc-Fish_trap-Glass-81286.jpg"
+  },
+  {
+    "fileName": "2022-Etc-Glass-00002.json",
+    "latitude": 35.1384833333333,
+    "longitude": 129.11455,
+    "label": "Glass",
+    "weight": 3.8,
+    "cluster": 1,
+    "riskScore": 3.56219512195122,
+    "imagePath": "data/images/2022-Etc-Glass-00002.jpg"
+  },
+  {
+    "fileName": "2022-Etc-Glass-00405.json",
+    "latitude": 35.0871833333333,
+    "longitude": 129.077716666667,
+    "label": "Glass",
+    "weight": 3.8,
+    "cluster": 3,
+    "riskScore": 3.58397328881469,
+    "imagePath": "data/images/2022-Etc-Glass-00405.jpg"
+  },
+  {
+    "fileName": "2022-Etc-Fish_trap-Metal-23812.json",
+    "latitude": 35.037709,
+    "longitude": 128.324086,
+    "label": "Metal",
+    "weight": 4.0,
+    "cluster": 5,
+    "riskScore": 3.4243842364532,
+    "imagePath": "data/images/2022-Etc-Fish_trap-Metal-23812.jpg"
+  },
+  {
+    "fileName": "2022-Etc-Fish_trap-Metal-34087.json",
+    "latitude": 35.0,
+    "longitude": 128.47,
+    "label": "Metal",
+    "weight": 4.0,
+    "cluster": 10,
+    "riskScore": 3.72258953168044,
+    "imagePath": "data/images/2022-Etc-Fish_trap-Metal-34087.jpg"
+  },
+  {
+    "fileName": "2022-Etc-Glass-Metal-09954.json",
+    "latitude": 35.1315,
+    "longitude": 129.11905,
+    "label": "Metal",
+    "weight": 4.0,
+    "cluster": 1,
+    "riskScore": 3.56219512195122,
+    "imagePath": "data/images/2022-Etc-Glass-Metal-09954.jpg"
+  },
+  {
+    "fileName": "2022-Etc-Fish_trap-Metal-Plastic-24011.json",
+    "latitude": 35.26914,
+    "longitude": 128.829531,
+    "label": "Plastic",
+    "weight": 4.8,
+    "cluster": 5,
+    "riskScore": 3.4243842364532,
+    "imagePath": "data/images/2022-Etc-Fish_trap-Metal-Plastic-24011.jpg"
+  },
+  {
+    "fileName": "2022-Etc-Fish_trap-Plastic-13970.json",
+    "latitude": 34.8887,
+    "longitude": 128.4725,
+    "label": "Plastic",
+    "weight": 4.8,
+    "cluster": 10,
+    "riskScore": 3.72258953168044,
+    "imagePath": "data/images/2022-Etc-Fish_trap-Plastic-13970.jpg"
+  },
+  {
+    "fileName": "2022-Etc-Fish_trap-Plastic-20801.json",
+    "latitude": 35.0702333333333,
+    "longitude": 129.083133333333,
+    "label": "Plastic",
+    "weight": 4.8,
+    "cluster": 3,
+    "riskScore": 3.58397328881469,
+    "imagePath": "data/images/2022-Etc-Fish_trap-Plastic-20801.jpg"
+  },
+  {
+    "fileName": "2022-Etc-Fish_trap-Wood-78410.json",
+    "latitude": 34.909317,
+    "longitude": 128.42265,
+    "label": "Wood",
+    "weight": 2.0,
+    "cluster": 10,
+    "riskScore": 3.72258953168044,
+    "imagePath": "data/images/2022-Etc-Fish_trap-Wood-78410.jpg"
+  },
+  {
+    "fileName": "2022-Etc-Fish_trap-Wood-90893.json",
+    "latitude": 36.033619,
+    "longitude": 129.503582,
+    "label": "Wood",
+    "weight": 2.0,
+    "cluster": 11,
+    "riskScore": 3.29464285714286,
+    "imagePath": "data/images/2022-Etc-Fish_trap-Wood-90893.jpg"
+  },
+  {
+    "fileName": "2022-Etc-Fish_trap-Wood-Plastic-89999.json",
+    "latitude": 34.94166,
+    "longitude": 128.746521,
+    "label": "Wood",
+    "weight": 2.0,
+    "cluster": 5,
+    "riskScore": 3.4243842364532,
+    "imagePath": "data/images/2022-Etc-Fish_trap-Wood-Plastic-89999.jpg"
+  },
+  {
+    "fileName": "2022-Rope-02068.json",
+    "latitude": 34.8331833333333,
+    "longitude": 128.414516666667,
+    "label": "Rope",
+    "weight": 3.2,
+    "cluster": 2,
+    "riskScore": 3.27389162561576,
+    "imagePath": "data/images/2022-Rope-02068.jpg"
+  },
+  {
+    "fileName": "2022-Rope-02094.json",
+    "latitude": 34.826,
+    "longitude": 128.35755,
+    "label": "Rope",
+    "weight": 3.2,
+    "cluster": 2,
+    "riskScore": 3.27389162561576,
+    "imagePath": "data/images/2022-Rope-02094.jpg"
+  },
+  {
+    "fileName": "2022-Rope-02096.json",
+    "latitude": 35.1384833333333,
+    "longitude": 129.11455,
+    "label": "Rope",
+    "weight": 3.2,
+    "cluster": 1,
+    "riskScore": 3.56219512195122,
+    "imagePath": "data/images/2022-Rope-02096.jpg"
+  },
+  {
+    "fileName": "2022-Etc-Fish_trap-Metal-Rubber_etc-76574.json",
+    "latitude": 35.286078,
+    "longitude": 129.022598,
+    "label": "Rubber_etc",
+    "weight": 1.0,
+    "cluster": 5,
+    "riskScore": 3.4243842364532,
+    "imagePath": "data/images/2022-Etc-Fish_trap-Metal-Rubber_etc-76574.jpg"
+  },
+  {
+    "fileName": "2022-Etc-Fish_trap-Metal-Rubber_tire-27037.json",
+    "latitude": 35.634983,
+    "longitude": 129.274746,
+    "label": "Rubber_tire",
+    "weight": 3.8,
+    "cluster": 5,
+    "riskScore": 3.4243842364532,
+    "imagePath": "data/images/2022-Etc-Fish_trap-Metal-Rubber_tire-27037.jpg"
+  },
+  {
+    "fileName": "2022-Fish_net-02308.json",
+    "latitude": 35.0871833333333,
+    "longitude": 129.077716666667,
+    "label": "Fish_net",
+    "weight": 4.5,
+    "cluster": 3,
+    "riskScore": 3.58397328881469,
+    "imagePath": "data/images/2022-Fish_net-02308.jpg"
+  },
+  {
+    "fileName": "2022-Fish_net-02399.json",
+    "latitude": 35.1386333333333,
+    "longitude": 129.114216666667,
+    "label": "Fish_net",
+    "weight": 4.5,
+    "cluster": 1,
+    "riskScore": 3.56219512195122,
+    "imagePath": "data/images/2022-Fish_net-02399.jpg"
+  },
+  {
+    "fileName": "2022-Fish_net-02562.json",
+    "latitude": 35.1384666666667,
+    "longitude": 129.1143,
+    "label": "Fish_net",
+    "weight": 4.5,
+    "cluster": 1,
+    "riskScore": 3.56219512195122,
+    "imagePath": "data/images/2022-Fish_net-02562.jpg"
+  },
+  {
+    "fileName": "2022-Etc-Fish_trap-00404.json",
+    "latitude": 35.0871833333333,
+    "longitude": 129.077716666667,
+    "label": "Fish_trap",
+    "weight": 3.0,
+    "cluster": 3,
+    "riskScore": 3.58397328881469,
+    "imagePath": "data/images/2022-Etc-Fish_trap-00404.jpg"
+  },
+  {
+    "fileName": "2022-Etc-Fish_trap-00606.json",
+    "latitude": 35.1386,
+    "longitude": 129.114233333333,
+    "label": "Fish_trap",
+    "weight": 3.0,
+    "cluster": 1,
+    "riskScore": 3.56219512195122,
+    "imagePath": "data/images/2022-Etc-Fish_trap-00606.jpg"
+  },
+  {
+    "fileName": "2022-Etc-Fish_trap-07112.json",
+    "latitude": 35.0682,
+    "longitude": 129.0647,
+    "label": "Fish_trap",
+    "weight": 3.0,
+    "cluster": 3,
+    "riskScore": 3.58397328881469,
+    "imagePath": "data/images/2022-Etc-Fish_trap-07112.jpg"
+  },
+  {
+    "fileName": "2022-Etc-Fish_trap-Glass-81286.json",
+    "latitude": 34.8328,
+    "longitude": 128.715567,
+    "label": "Glass",
+    "weight": 3.8,
+    "cluster": 8,
+    "riskScore": 3.27245762711864,
+    "imagePath": "data/images/2022-Etc-Fish_trap-Glass-81286.jpg"
+  },
+  {
+    "fileName": "2022-Etc-Glass-00002.json",
+    "latitude": 35.1384833333333,
+    "longitude": 129.11455,
+    "label": "Glass",
+    "weight": 3.8,
+    "cluster": 1,
+    "riskScore": 3.56219512195122,
+    "imagePath": "data/images/2022-Etc-Glass-00002.jpg"
+  },
+  {
+    "fileName": "2022-Etc-Glass-00405.json",
+    "latitude": 35.0871833333333,
+    "longitude": 129.077716666667,
+    "label": "Glass",
+    "weight": 3.8,
+    "cluster": 3,
+    "riskScore": 3.58397328881469,
+    "imagePath": "data/images/2022-Etc-Glass-00405.jpg"
+  },
+  {
+    "fileName": "2022-Etc-Fish_trap-Metal-23812.json",
+    "latitude": 34.885521,
+    "longitude": 128.21235,
+    "label": "Metal",
+    "weight": 4.0,
+    "cluster": 5,
+    "riskScore": 3.4243842364532,
+    "imagePath": "data/images/2022-Etc-Fish_trap-Metal-23812.jpg"
+  },
+  {
+    "fileName": "2022-Etc-Fish_trap-Metal-34087.json",
+    "latitude": 35.0,
+    "longitude": 128.47,
+    "label": "Metal",
+    "weight": 4.0,
+    "cluster": 10,
+    "riskScore": 3.72258953168044,
+    "imagePath": "data/images/2022-Etc-Fish_trap-Metal-34087.jpg"
+  },
+  {
+    "fileName": "2022-Etc-Glass-Metal-09954.json",
+    "latitude": 35.1315,
+    "longitude": 129.11905,
+    "label": "Metal",
+    "weight": 4.0,
+    "cluster": 1,
+    "riskScore": 3.56219512195122,
+    "imagePath": "data/images/2022-Etc-Glass-Metal-09954.jpg"
+  },
+  {
+    "fileName": "2022-Etc-Fish_trap-Metal-Plastic-24011.json",
+    "latitude": 34.854849,
+    "longitude": 128.372602,
+    "label": "Plastic",
+    "weight": 4.8,
+    "cluster": 5,
+    "riskScore": 3.4243842364532,
+    "imagePath": "data/images/2022-Etc-Fish_trap-Metal-Plastic-24011.jpg"
+  },
+  {
+    "fileName": "2022-Etc-Fish_trap-Plastic-13970.json",
+    "latitude": 34.8887,
+    "longitude": 128.4725,
+    "label": "Plastic",
+    "weight": 4.8,
+    "cluster": 10,
+    "riskScore": 3.72258953168044,
+    "imagePath": "data/images/2022-Etc-Fish_trap-Plastic-13970.jpg"
+  },
+  {
+    "fileName": "2022-Etc-Fish_trap-Plastic-20801.json",
+    "latitude": 35.0702333333333,
+    "longitude": 129.083133333333,
+    "label": "Plastic",
+    "weight": 4.8,
+    "cluster": 3,
+    "riskScore": 3.58397328881469,
+    "imagePath": "data/images/2022-Etc-Fish_trap-Plastic-20801.jpg"
+  },
+  {
+    "fileName": "2022-Etc-Fish_trap-Wood-78410.json",
+    "latitude": 34.909317,
+    "longitude": 128.42265,
+    "label": "Wood",
+    "weight": 2.0,
+    "cluster": 10,
+    "riskScore": 3.72258953168044,
+    "imagePath": "data/images/2022-Etc-Fish_trap-Wood-78410.jpg"
+  },
+  {
+    "fileName": "2022-Etc-Fish_trap-Wood-90893.json",
+    "latitude": 36.033619,
+    "longitude": 129.503582,
+    "label": "Wood",
+    "weight": 2.0,
+    "cluster": 11,
+    "riskScore": 3.29464285714286,
+    "imagePath": "data/images/2022-Etc-Fish_trap-Wood-90893.jpg"
+  },
+  {
+    "fileName": "2022-Etc-Fish_trap-Wood-Plastic-89999.jpg",
+    "latitude": 34.996909,
+    "longitude": 128.139999,
+    "label": "Wood",
+    "weight": 2.0,
+    "cluster": 5,
+    "riskScore": 3.4243842364532,
+    "imagePath": "data/images/2022-Etc-Fish_trap-Wood-Plastic-89999.jpg"
+  },
+  {
+    "fileName": "2022-Rope-02068.json",
+    "latitude": 34.8331833333333,
+    "longitude": 128.414516666667,
+    "label": "Rope",
+    "weight": 3.2,
+    "cluster": 2,
+    "riskScore": 3.27389162561576,
+    "imagePath": "data/images/2022-Rope-02068.jpg"
+  },
+  {
+    "fileName": "2022-Rope-02094.json",
+    "latitude": 34.826,
+    "longitude": 128.35755,
+    "label": "Rope",
+    "weight": 3.2,
+    "cluster": 2,
+    "riskScore": 3.27389162561576,
+    "imagePath": "data/images/2022-Rope-02094.jpg"
+  },
+  {
+    "fileName": "2022-Rope-02096.json",
+    "latitude": 35.1384833333333,
+    "longitude": 129.11455,
+    "label": "Rope",
+    "weight": 3.2,
+    "cluster": 1,
+    "riskScore": 3.56219512195122,
+    "imagePath": "data/images/2022-Rope-02096.jpg"
+  },
+  {
+    "fileName": "2022-Etc-Fish_trap-00404.jpg",
+    "latitude": 35.123456,
+    "longitude": 128.654321,
+    "label": "Fish_trap",
+    "weight": 0.85,
+    "cluster": 1,
+    "riskScore": 3.23,
+    "imagePath": "data/images/2022-Etc-Fish_trap-00404.jpg"
+  },
+  {
+    "fileName": "2022-Etc-Fish_trap-00606.jpg",
+    "latitude": 35.234567,
+    "longitude": 128.765432,
+    "label": "Fish_trap",
+    "weight": 0.92,
+    "cluster": 1,
+    "riskScore": 3.5,
+    "imagePath": "data/images/2022-Etc-Fish_trap-00606.jpg"
+  },
+  {
+    "fileName": "2022-Etc-Fish_trap-07112.jpg",
+    "latitude": 35.345678,
+    "longitude": 128.876543,
+    "label": "Fish_trap",
+    "weight": 0.78,
+    "cluster": 1,
+    "riskScore": 2.96,
+    "imagePath": "data/images/2022-Etc-Fish_trap-07112.jpg"
+  },
+  {
+    "fileName": "2022-Etc-Fish_trap-Glass-81286.jpg",
+    "latitude": 35.456789,
+    "longitude": 128.987654,
+    "label": "Glass",
+    "weight": 0.88,
+    "cluster": 1,
+    "riskScore": 3.08,
+    "imagePath": "data/images/2022-Etc-Fish_trap-Glass-81286.jpg"
+  },
+  {
+    "fileName": "2022-Etc-Fish_trap-Metal-23812.jpg",
+    "latitude": 35.56789,
+    "longitude": 129.098765,
+    "label": "Metal",
+    "weight": 0.91,
+    "cluster": 1,
+    "riskScore": 2.91,
+    "imagePath": "data/images/2022-Etc-Fish_trap-Metal-23812.jpg"
+  },
+  {
+    "fileName": "2022-Etc-Fish_trap-Metal-34087.jpg",
+    "latitude": 35.678901,
+    "longitude": 129.109876,
+    "label": "Metal",
+    "weight": 0.83,
+    "cluster": 1,
+    "riskScore": 2.66,
+    "imagePath": "data/images/2022-Etc-Fish_trap-Metal-34087.jpg"
+  },
+  {
+    "fileName": "2022-Etc-Fish_trap-Metal-Plastic-24011.jpg",
+    "latitude": 35.789012,
+    "longitude": 129.210987,
+    "label": "Plastic",
+    "weight": 0.89,
+    "cluster": 1,
+    "riskScore": 2.67,
+    "imagePath": "data/images/2022-Etc-Fish_trap-Metal-Plastic-24011.jpg"
+  },
+  {
+    "fileName": "2022-Etc-Fish_trap-Metal-Rubber_etc-76574.jpg",
+    "latitude": 35.890123,
+    "longitude": 129.321098,
+    "label": "Rubber_etc",
+    "weight": 0.76,
+    "cluster": 1,
+    "riskScore": 1.9,
+    "imagePath": "data/images/2022-Etc-Fish_trap-Metal-Rubber_etc-76574.jpg"
+  },
+  {
+    "fileName": "2022-Etc-Fish_trap-Metal-Rubber_tire-27037.jpg",
+    "latitude": 35.901234,
+    "longitude": 129.432109,
+    "label": "Rubber_tire",
+    "weight": 0.94,
+    "cluster": 1,
+    "riskScore": 2.16,
+    "imagePath": "data/images/2022-Etc-Fish_trap-Metal-Rubber_tire-27037.jpg"
+  },
+  {
+    "fileName": "2022-Etc-Fish_trap-Plastic-13970.jpg",
+    "latitude": 35.036051,
+    "longitude": 128.286369,
+    "label": "Plastic",
+    "weight": 0.87,
+    "cluster": 1,
+    "riskScore": 2.61,
+    "imagePath": "data/images/2022-Etc-Fish_trap-Plastic-13970.jpg"
+  },
+  {
+    "fileName": "2022-Etc-Fish_trap-Plastic-20801.jpg",
+    "latitude": 35.026001,
+    "longitude": 128.855119,
+    "label": "Plastic",
+    "weight": 0.82,
+    "cluster": 1,
+    "riskScore": 2.46,
+    "imagePath": "data/images/2022-Etc-Fish_trap-Plastic-20801.jpg"
+  },
+  {
+    "fileName": "2022-Etc-Fish_trap-Wood-78410.jpg",
+    "latitude": 35.066444,
+    "longitude": 128.375466,
+    "label": "Wood",
+    "weight": 0.79,
+    "cluster": 1,
+    "riskScore": 1.58,
+    "imagePath": "data/images/2022-Etc-Fish_trap-Wood-78410.jpg"
+  },
+  {
+    "fileName": "2022-Etc-Fish_trap-Wood-90893.jpg",
+    "latitude": 35.75776,
+    "longitude": 129.195719,
+    "label": "Wood",
+    "weight": 0.85,
+    "cluster": 1,
+    "riskScore": 1.7,
+    "imagePath": "data/images/2022-Etc-Fish_trap-Wood-90893.jpg"
+  },
+  {
+    "fileName": "2022-Etc-Fish_trap-Wood-Plastic-89999.jpg",
+    "latitude": 34.801722,
+    "longitude": 128.241243,
+    "label": "Plastic",
+    "weight": 0.88,
+    "cluster": 1,
+    "riskScore": 2.64,
+    "imagePath": "data/images/2022-Etc-Fish_trap-Wood-Plastic-89999.jpg"
+  },
+  {
+    "fileName": "2022-Etc-Glass-00002.jpg",
+    "latitude": 34.890641,
+    "longitude": 128.2147,
+    "label": "Glass",
+    "weight": 0.93,
+    "cluster": 1,
+    "riskScore": 3.26,
+    "imagePath": "data/images/2022-Etc-Glass-00002.jpg"
+  },
+  {
+    "fileName": "2022-Etc-Glass-00405.jpg",
+    "latitude": 35.807749,
+    "longitude": 129.37644,
+    "label": "Glass",
+    "weight": 0.81,
+    "cluster": 1,
+    "riskScore": 2.84,
+    "imagePath": "data/images/2022-Etc-Glass-00405.jpg"
+  },
+  {
+    "fileName": "2022-Etc-Glass-Metal-09954.jpg",
+    "latitude": 35.560295,
+    "longitude": 129.321053,
+    "label": "Metal",
+    "weight": 0.86,
+    "cluster": 1,
+    "riskScore": 2.75,
+    "imagePath": "data/images/2022-Etc-Glass-Metal-09954.jpg"
+  },
+  {
+    "fileName": "2022-Fish_net-02308.jpg",
+    "latitude": 34.858963,
+    "longitude": 128.213086,
+    "label": "Fish_net",
+    "weight": 0.95,
+    "cluster": 1,
+    "riskScore": 3.8,
+    "imagePath": "data/images/2022-Fish_net-02308.jpg"
+  },
+  {
+    "fileName": "2022-Fish_net-02399.jpg",
+    "latitude": 35.005691,
+    "longitude": 128.939839,
+    "label": "Fish_net",
+    "weight": 0.88,
+    "cluster": 1,
+    "riskScore": 3.52,
+    "imagePath": "data/images/2022-Fish_net-02399.jpg"
+  },
+  {
+    "fileName": "2022-Fish_net-02562.jpg",
+    "latitude": 35.855268,
+    "longitude": 129.245165,
+    "label": "Fish_net",
+    "weight": 0.91,
+    "cluster": 1,
+    "riskScore": 3.64,
+    "imagePath": "data/images/2022-Fish_net-02562.jpg"
+  },
+  {
+    "fileName": "2022-Rope-02068.jpg",
+    "latitude": 34.897406,
+    "longitude": 128.34771,
+    "label": "Rope",
+    "weight": 0.84,
+    "cluster": 1,
+    "riskScore": 2.35,
+    "imagePath": "data/images/2022-Rope-02068.jpg"
+  },
+  {
+    "fileName": "2022-Rope-02094.jpg",
+    "latitude": 35.255276,
+    "longitude": 128.885797,
+    "label": "Rope",
+    "weight": 0.79,
+    "cluster": 1,
+    "riskScore": 2.21,
+    "imagePath": "data/images/2022-Rope-02094.jpg"
+  },
+  {
+    "fileName": "2022-Rope-02096.jpg",
+    "latitude": 34.977388,
+    "longitude": 128.812182,
+    "label": "Rope",
+    "weight": 0.87,
+    "cluster": 1,
+    "riskScore": 2.44,
+    "imagePath": "data/images/2022-Rope-02096.jpg"
+  }
+]

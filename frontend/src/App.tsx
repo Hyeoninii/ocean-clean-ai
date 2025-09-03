@@ -1,5 +1,6 @@
 import React from 'react';
-import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import Sidebar from './components/Sidebar';
 import HomePage from './pages/HomePage';
 import DataPage from './pages/DataPage';
 import MapPage from './pages/MapPage';
@@ -11,44 +12,23 @@ function App() {
   return (
     <Router>
       <div className="App">
-        <nav className="navbar">
-          <div className="nav-container">
-            <Link to="/" className="nav-logo">
-              🌊 Ocean Clean AI
-            </Link>
-            <ul className="nav-menu">
-              <li className="nav-item">
-                <Link to="/" className="nav-link">홈</Link>
-              </li>
-              <li className="nav-item">
-                <Link to="/data" className="nav-link">데이터 현황</Link>
-              </li>
-              <li className="nav-item">
-                <Link to="/map" className="nav-link">지도</Link>
-              </li>
-              <li className="nav-item">
-                <Link to="/upload" className="nav-link">업로드</Link>
-              </li>
-              <li className="nav-item">
-                <Link to="/test" className="nav-link">테스트</Link>
-              </li>
-            </ul>
-          </div>
-        </nav>
+        <Sidebar />
+        
+        <div className="main-wrapper">
+          <main className="main-content">
+            <Routes>
+              <Route path="/" element={<HomePage />} />
+              <Route path="/data" element={<DataPage />} />
+              <Route path="/map" element={<MapPage />} />
+              <Route path="/upload" element={<UploadPage />} />
+              <Route path="/test" element={<TestPage />} />
+            </Routes>
+          </main>
 
-        <main className="main-content">
-          <Routes>
-            <Route path="/" element={<HomePage />} />
-            <Route path="/data" element={<DataPage />} />
-            <Route path="/map" element={<MapPage />} />
-            <Route path="/upload" element={<UploadPage />} />
-            <Route path="/test" element={<TestPage />} />
-          </Routes>
-        </main>
-
-        <footer className="footer">
-          <p>해양 보호의 첫걸음, Ocean Clean AI</p>
-        </footer>
+          <footer className="footer">
+            <p>해양 보호의 첫걸음, Ocean Clean AI</p>
+          </footer>
+        </div>
       </div>
     </Router>
   );

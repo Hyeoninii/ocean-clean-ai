@@ -12,9 +12,9 @@ def load_csv_data():
     """CSV 파일들을 읽어서 JSON 형태로 변환"""
     
     data_files = [
-        "data/csv/ocean_risk.csv",
-        "data/csv/test.csv", 
-        "data/csv/image_data.csv"
+        "backend/data/csv/ocean_risk.csv",
+        "backend/data/csv/test.csv", 
+        "backend/data/csv/image_data.csv"
     ]
     
     all_data = []
@@ -60,10 +60,10 @@ def load_csv_data():
     print(f"총 {len(all_data)}개의 데이터를 로드했습니다.")
     
     # JSON 파일로 저장 (백엔드에서 읽을 수 있도록)
-    with open("data/loaded_data.json", "w", encoding="utf-8") as f:
+    with open("backend/data/loaded_data.json", "w", encoding="utf-8") as f:
         json.dump(all_data, f, ensure_ascii=False, indent=2)
     
-    print("데이터가 data/loaded_data.json에 저장되었습니다.")
+    print("데이터가 backend/data/loaded_data.json에 저장되었습니다.")
     
     return all_data
 

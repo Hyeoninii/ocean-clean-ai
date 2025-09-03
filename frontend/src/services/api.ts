@@ -46,9 +46,10 @@ export const wasteDataApi = {
   },
 
   // 이미지 업로드 및 분석
-  uploadImage: async (file: File): Promise<UploadResponse> => {
+  uploadImage: async (file: File, modelType: string = 'coastal'): Promise<UploadResponse> => {
     const formData = new FormData();
     formData.append('file', file);
+    formData.append('modelType', modelType);
     
     const response = await api.post('/waste-data/upload', formData, {
       headers: {
@@ -61,6 +62,12 @@ export const wasteDataApi = {
   // YOLO 서비스 상태 확인
   getYOLOStatus: async () => {
     const response = await api.get('/waste-data/yolo-status');
+    return response.data;
+  },
+
+  // 사용 가능한 모델 목록 조회
+  getAvailableModels: async () => {
+    const response = await api.get('/waste-data/available-models');
     return response.data;
   },
 };
