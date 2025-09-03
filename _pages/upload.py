@@ -2,6 +2,10 @@ import streamlit as st
 import time
 import os
 from datetime import datetime
+import cv2
+import numpy as np
+from PIL import Image
+from ultralytics import YOLO
 
 def upload_page():
     st.markdown(
@@ -29,17 +33,71 @@ def upload_page():
         st.markdown("---")
         st.write("분석 진행 상황 :")
         my_bar = st.progress(0)
-        for percent_complete in range(100):
-            time.sleep(0.07)
-            my_bar.progress(percent_complete + 1)
-
-        st.success("완료되었습니다!")
+        
+        # YOLO 모델 로드 및 예측
+        try:
+            # YOLO 모델 로드
+            model = YOLO('/Users/bagseongmin/Desktop/해커톤/best.pt')
+            
+            # 이미지를 numpy 배열로 변환
+            image = Image.open(uploaded_file)
+            image_np = np.array(image)
+            
+            # YOLO 예측 실행
+            results = model(image_np)
+            
+            # 결과 처리
+            detected_objects = []
+            for result in results:
+                boxes = result.boxes
+                if boxes is not None:
+                    for box in boxes:
+                        # 클래스 정보 가져오기
+                        class_id = int(box.cls[0])
+                        confidence = float(box.conf[0])
+                        class_name = model.names[class_id]
+                        
+                        detected_objects.append({
+                            'class': class_name,
+                            'confidence': confidence,
+                            'bbox': box.xyxy[0].tolist()
+                        })
+            
+            # 진행률 업데이트
+            for percent_complete in range(100):
+                time.sleep(0.01)  # 더 빠르게
+                my_bar.progress(percent_complete + 1)
+            
+            st.success("완료되었습니다!")
+            
+        except Exception as e:
+            st.error(f"YOLO 모델 실행 중 오류가 발생했습니다: {str(e)}")
+            # 기본 진행률 표시
+            for percent_complete in range(100):
+                time.sleep(0.07)
+                my_bar.progress(percent_complete + 1)
+            st.success("완료되었습니다!")
+            detected_objects = []
         st.markdown("---")
         st.subheader("📍 분석 결과")
-        st.write("1개의 플라스틱 쓰레기")
-        st.write("Latitude: 35.08")
-        st.write("Longitude: 128.8")
-        st.write("위험도: 3.84")
+        
+        if 'detected_objects' in locals() and detected_objects:
+            for i, obj in enumerate(detected_objects, 1):
+                st.write(f"{i}. {obj['class']} (신뢰도: {obj['confidence']:.2f})")
+            
+            # 결과 이미지 표시 (바운딩 박스가 그려진 이미지)
+            try:
+                result_image = results[0].plot()
+                st.image(result_image, caption="YOLO 분석 결과", use_container_width=True)
+            except:
+                st.image(uploaded_file, caption="업로드한 이미지", use_container_width=True)
+        else:
+            st.write("감지된 객체가 없습니다.")
+            # 기본 결과 표시
+            st.write("1개의 플라스틱 쓰레기")
+            st.write("Latitude: 35.08")
+            st.write("Longitude: 128.8")
+            st.write("위험도: 3.84")
         st.markdown("---")
         st.markdown(
             "<div style='font-size: 18px; font-weight: bold;'> 해당 이미지와 분석 결과를 신고 접수하였습니다. 감사합니다!😉</div>", 
