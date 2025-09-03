@@ -132,7 +132,9 @@ const MapPage: React.FC = () => {
       <div style={{ height: '600px', borderRadius: '10px', overflow: 'hidden', boxShadow: '0 4px 6px rgba(0,0,0,0.1)' }}>
         <MapContainer
           center={getMapCenter() as [number, number]}
-          zoom={10}
+          zoom={9}
+          minZoom={8}
+          maxZoom={15}
           style={{ height: '100%', width: '100%' }}
         >
           <TileLayer
@@ -144,17 +146,23 @@ const MapPage: React.FC = () => {
             <CircleMarker
               key={item.id}
               center={[item.latitude, item.longitude]}
-              radius={8}
+              radius={10}
               color={getRiskColor(item.riskScore)}
               fillColor={getRiskColor(item.riskScore)}
-              fillOpacity={0.7}
-              weight={2}
+              fillOpacity={0.8}
+              weight={3}
             >
               <Popup>
                 <div style={{ minWidth: '250px' }}>
                   <h4 style={{ marginBottom: '0.5rem', color: '#333' }}>
                     {getKoreanLabel(item.label)}
                   </h4>
+                  <p style={{ marginBottom: '0.5rem' }}>
+                    <strong>위도:</strong> {item.latitude.toFixed(6)}
+                  </p>
+                  <p style={{ marginBottom: '0.5rem' }}>
+                    <strong>경도:</strong> {item.longitude.toFixed(6)}
+                  </p>
                   <p style={{ marginBottom: '0.5rem' }}>
                     <strong>위험도:</strong> {item.riskScore.toFixed(2)} ({getRiskLevelText(item.riskScore)})
                   </p>
@@ -185,6 +193,8 @@ const MapPage: React.FC = () => {
           ))}
         </MapContainer>
       </div>
+
+
 
       {/* 통계 정보 */}
       <div className="card" style={{ marginTop: '1rem' }}>
