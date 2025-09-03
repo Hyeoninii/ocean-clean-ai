@@ -65,23 +65,40 @@ const TestPage: React.FC = () => {
         <h3>🤖 YOLO AI 서비스 상태</h3>
         {yoloStatus ? (
           <div>
-            <p><strong>모델 파일:</strong> 
-              <span style={{ color: yoloStatus.modelAvailable ? '#28a745' : '#dc3545' }}>
-                {yoloStatus.modelAvailable ? '✅ 사용 가능' : '❌ 없음'}
-              </span>
-            </p>
-            <p><strong>Python 스크립트:</strong> 
-              <span style={{ color: yoloStatus.scriptAvailable ? '#28a745' : '#dc3545' }}>
-                {yoloStatus.scriptAvailable ? '✅ 사용 가능' : '❌ 없음'}
-              </span>
-            </p>
-            <p><strong>Python 환경:</strong> 
-              <span style={{ color: yoloStatus.pythonAvailable ? '#28a745' : '#dc3545' }}>
-                {yoloStatus.pythonAvailable ? '✅ 설치됨' : '❌ 설치 안됨'}
-              </span>
-            </p>
-            <p><strong>모델 경로:</strong> {yoloStatus.modelPath}</p>
-            <p><strong>스크립트 경로:</strong> {yoloStatus.scriptPath}</p>
+            <div style={{ marginBottom: '1rem' }}>
+              <h4>🏖️ 해안 쓰레기 모델</h4>
+              <p><strong>상태:</strong> 
+                <span style={{ color: yoloStatus.coastalModelAvailable ? '#28a745' : '#dc3545' }}>
+                  {yoloStatus.coastalModelAvailable ? '✅ 사용 가능' : '❌ 없음'}
+                </span>
+              </p>
+              <p><strong>경로:</strong> {yoloStatus.coastalModelPath}</p>
+            </div>
+            
+            <div style={{ marginBottom: '1rem' }}>
+              <h4>🌊 부유 쓰레기 모델</h4>
+              <p><strong>상태:</strong> 
+                <span style={{ color: yoloStatus.floatingModelAvailable ? '#28a745' : '#dc3545' }}>
+                  {yoloStatus.floatingModelAvailable ? '✅ 사용 가능' : '❌ 없음'}
+                </span>
+              </p>
+              <p><strong>경로:</strong> {yoloStatus.floatingModelPath}</p>
+            </div>
+            
+            <div style={{ marginBottom: '1rem' }}>
+              <p><strong>Python 스크립트:</strong> 
+                <span style={{ color: yoloStatus.scriptAvailable ? '#28a745' : '#dc3545' }}>
+                  {yoloStatus.scriptAvailable ? '✅ 사용 가능' : '❌ 없음'}
+                </span>
+              </p>
+              <p><strong>Python 환경:</strong> 
+                <span style={{ color: yoloStatus.pythonAvailable ? '#28a745' : '#dc3545' }}>
+                  {yoloStatus.pythonAvailable ? '✅ 설치됨' : '❌ 설치 안됨'}
+                </span>
+              </p>
+              <p><strong>스크립트 경로:</strong> {yoloStatus.scriptPath}</p>
+            </div>
+            
             {yoloStatus.error && (
               <p style={{ color: '#dc3545' }}><strong>오류:</strong> {yoloStatus.error}</p>
             )}

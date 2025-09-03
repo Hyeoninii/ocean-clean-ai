@@ -1,4 +1,4 @@
-import React, { useState, useRef } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import { UploadResponse } from '../types/WasteData';
 import { wasteDataApi } from '../services/api';
 import BoundingBoxImage from '../components/BoundingBoxImage';
@@ -10,7 +10,22 @@ const UploadPage: React.FC = () => {
   const [uploadProgress, setUploadProgress] = useState(0);
   const [analysisResult, setAnalysisResult] = useState<UploadResponse | null>(null);
   const [error, setError] = useState<string>('');
+  const [selectedModel, setSelectedModel] = useState<string>('coastal');
+  const [availableModels, setAvailableModels] = useState<any>(null);
   const fileInputRef = useRef<HTMLInputElement>(null);
+
+  useEffect(() => {
+    fetchAvailableModels();
+  }, []);
+
+  const fetchAvailableModels = async () => {
+    try {
+      const models = await wasteDataApi.getAvailableModels();
+      setAvailableModels(models);
+    } catch (error) {
+      console.error('모델 목록 로드 실패:', error);
+    }
+  };
 
   const handleFileSelect = (event: React.ChangeEvent<HTMLInputElement>) => {
     const file = event.target.files?.[0];
@@ -41,7 +56,7 @@ const UploadPage: React.FC = () => {
         });
       }, 200);
 
-      const result = await wasteDataApi.uploadImage(uploadedFile);
+      const result = await wasteDataApi.uploadImage(uploadedFile, selectedModel);
       
       clearInterval(progressInterval);
       setUploadProgress(100);
@@ -112,6 +127,59 @@ const UploadPage: React.FC = () => {
         <p style={{ fontSize: '1.2rem', color: '#666', marginBottom: '1rem' }}>
           해양 쓰레기 사진을 업로드하면 AI가 자동으로 분석하여 위험도를 평가합니다.
         </p>
+      </div>
+
+      {/* 모델 선택 섹션 */}
+      <div className="card" style={{ marginBottom: '2rem' }}>
+        <h3 style={{ marginBottom: '1rem' }}>🤖 AI 모델 선택</h3>
+        <div style={{ display: 'flex', gap: '2rem', justifyContent: 'center', flexWrap: 'wrap' }}>
+          {availableModels && (
+            <>
+              <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
+                <input
+                  type="radio"
+                  id="coastal"
+                  name="modelType"
+                  value="coastal"
+                  checked={selectedModel === 'coastal'}
+                  onChange={(e) => setSelectedModel(e.target.value)}
+                  disabled={!availableModels.coastal?.available}
+                />
+                <label htmlFor="coastal" style={{ 
+                  color: availableModels.coastal?.available ? '#333' : '#999',
+                  cursor: availableModels.coastal?.available ? 'pointer' : 'not-allowed'
+                }}>
+                  🏖️ 해안 쓰레기 모델
+                  {!availableModels.coastal?.available && ' (사용 불가)'}
+                </label>
+              </div>
+              <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
+                <input
+                  type="radio"
+                  id="floating"
+                  name="modelType"
+                  value="floating"
+                  checked={selectedModel === 'floating'}
+                  onChange={(e) => setSelectedModel(e.target.value)}
+                  disabled={!availableModels.floating?.available}
+                />
+                <label htmlFor="floating" style={{ 
+                  color: availableModels.floating?.available ? '#333' : '#999',
+                  cursor: availableModels.floating?.available ? 'pointer' : 'not-allowed'
+                }}>
+                  🌊 부유 쓰레기 모델
+                  {!availableModels.floating?.available && ' (사용 불가)'}
+                </label>
+              </div>
+            </>
+          )}
+        </div>
+        {availableModels && (
+          <div style={{ marginTop: '1rem', fontSize: '0.9rem', color: '#666' }}>
+            <p><strong>선택된 모델:</strong> {availableModels[selectedModel]?.name || '알 수 없음'}</p>
+            <p><strong>모델 경로:</strong> {availableModels[selectedModel]?.path || '알 수 없음'}</p>
+          </div>
+        )}
       </div>
 
       {/* 파일 업로드 섹션 */}

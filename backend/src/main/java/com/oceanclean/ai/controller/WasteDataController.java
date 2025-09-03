@@ -76,7 +76,9 @@ public class WasteDataController {
     }
     
     @PostMapping("/upload")
-    public ResponseEntity<Map<String, Object>> uploadImage(@RequestParam("file") MultipartFile file) {
+    public ResponseEntity<Map<String, Object>> uploadImage(
+            @RequestParam("file") MultipartFile file,
+            @RequestParam(value = "modelType", defaultValue = "coastal") String modelType) {
         Map<String, Object> response = new HashMap<>();
         
         try {
@@ -85,7 +87,7 @@ public class WasteDataController {
             String fullImagePath = "data/images/" + filename;
             
             // YOLO 모델을 사용한 실제 분석
-            Map<String, Object> yoloResult = yoloAnalysisService.analyzeImage(fullImagePath);
+            Map<String, Object> yoloResult = yoloAnalysisService.analyzeImage(fullImagePath, modelType);
             
             String detectedLabel;
             Double riskScore;
@@ -131,6 +133,12 @@ public class WasteDataController {
     public ResponseEntity<Map<String, Object>> getYOLOStatus() {
         Map<String, Object> status = yoloAnalysisService.getServiceStatus();
         return ResponseEntity.ok(status);
+    }
+    
+    @GetMapping("/available-models")
+    public ResponseEntity<Map<String, Object>> getAvailableModels() {
+        Map<String, Object> models = yoloAnalysisService.getAvailableModels();
+        return ResponseEntity.ok(models);
     }
 
 }
