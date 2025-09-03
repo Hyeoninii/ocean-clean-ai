@@ -5,7 +5,7 @@ st.set_page_config(page_title="Ocean Clean AI", layout="wide")
 st.sidebar.title("🌊 Ocean Clean AI")
 page = st.sidebar.radio(
     "메뉴를 선택하세요",
-    ("홈", "데이터프레임", "지도", "업로드")
+    ("홈", "데이터 현황", "지도", "업로드")
 )
  # 캡션을 페이지 맨 아래 중앙에 고정
 st.markdown(
@@ -21,7 +21,7 @@ if page == "홈":
     from _pages.home import home_page
     home_page()
 
-elif page == "데이터프레임":
+elif page == "데이터 현황":
     from _pages.dataframe import dataframe_page
     dataframe_page()
 

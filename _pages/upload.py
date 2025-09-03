@@ -36,9 +36,9 @@ def upload_page():
         st.success("완료되었습니다!")
         st.markdown("---")
         st.subheader("📍 분석 결과")
-        st.write("2개의 플라스틱 쓰레기")
-        st.write("Latitude: 355")
-        st.write("Longitude: 277")
+        st.write("1개의 플라스틱 쓰레기")
+        st.write("Latitude: 35.08")
+        st.write("Longitude: 128.8")
         st.write("위험도: 3.84")
         st.markdown("---")
         st.markdown(
