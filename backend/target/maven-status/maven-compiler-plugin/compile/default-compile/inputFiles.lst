@@ -1,0 +1,10 @@
+/Users/bagseongmin/Desktop/해커톤/ocean-clean-ai/backend/src/main/java/com/oceanclean/ai/repository/WasteDataRepository.java
+/Users/bagseongmin/Desktop/해커톤/ocean-clean-ai/backend/src/main/java/com/oceanclean/ai/service/WasteDataService.java
+/Users/bagseongmin/Desktop/해커톤/ocean-clean-ai/backend/src/main/java/com/oceanclean/ai/controller/TestController.java
+/Users/bagseongmin/Desktop/해커톤/ocean-clean-ai/backend/src/main/java/com/oceanclean/ai/controller/WasteDataController.java
+/Users/bagseongmin/Desktop/해커톤/ocean-clean-ai/backend/src/main/java/com/oceanclean/ai/service/DataInitializationService.java
+/Users/bagseongmin/Desktop/해커톤/ocean-clean-ai/backend/src/main/java/com/oceanclean/ai/controller/HomeController.java
+/Users/bagseongmin/Desktop/해커톤/ocean-clean-ai/backend/src/main/java/com/oceanclean/ai/entity/WasteData.java
+/Users/bagseongmin/Desktop/해커톤/ocean-clean-ai/backend/src/main/java/com/oceanclean/ai/OceanCleanAiApplication.java
+/Users/bagseongmin/Desktop/해커톤/ocean-clean-ai/backend/src/main/java/com/oceanclean/ai/config/WebConfig.java
+/Users/bagseongmin/Desktop/해커톤/ocean-clean-ai/backend/src/main/java/com/oceanclean/ai/dto/WasteDataDto.java
