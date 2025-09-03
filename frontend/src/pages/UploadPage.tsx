@@ -1,6 +1,7 @@
 import React, { useState, useRef } from 'react';
 import { UploadResponse } from '../types/WasteData';
 import { wasteDataApi } from '../services/api';
+import BoundingBoxImage from '../components/BoundingBoxImage';
 
 const UploadPage: React.FC = () => {
   const [uploadedFile, setUploadedFile] = useState<File | null>(null);
@@ -79,7 +80,12 @@ const UploadPage: React.FC = () => {
       "Rope": "로프",
       "Rubber_etc": "고무류",
       "Rubber_tire": "고무타이어",
-      "Wood": "목재"
+      "Wood": "목재",
+      "PET_Bottle": "PET 병",
+      "Bottle": "병",
+      "Can": "캔",
+      "Bag": "비닐봉지",
+      "Container": "컨테이너"
     };
     return labelMap[label] || label;
   };
@@ -224,7 +230,7 @@ const UploadPage: React.FC = () => {
       {/* 분석 결과 */}
       {analysisResult && analysisResult.success && (
         <div className="card">
-          <h3 style={{ marginBottom: '1rem' }}>📍 분석 결과</h3>
+          <h3 style={{ marginBottom: '1rem' }}>📍 YOLO AI 분석 결과</h3>
           
           <div className="grid grid-2" style={{ marginBottom: '2rem' }}>
             <div>
@@ -237,6 +243,16 @@ const UploadPage: React.FC = () => {
               }}>
                 <p style={{ marginBottom: '0.5rem' }}>
                   <strong>종류:</strong> {getKoreanLabel(analysisResult.detectedLabel || '')}
+                </p>
+                <p style={{ marginBottom: '0.5rem' }}>
+                  <strong>신뢰도:</strong> 
+                  <span style={{ 
+                    color: analysisResult.confidence && analysisResult.confidence > 0.7 ? '#28a745' : '#ffc107',
+                    fontWeight: 'bold',
+                    marginLeft: '0.5rem'
+                  }}>
+                    {(analysisResult.confidence || 0) * 100}%
+                  </span>
                 </p>
                 <p style={{ marginBottom: '0.5rem' }}>
                   <strong>위험도:</strong> 
@@ -252,22 +268,64 @@ const UploadPage: React.FC = () => {
                   <strong>위치:</strong> {analysisResult.data?.locationName}
                 </p>
               </div>
+              
+              {/* YOLO 분석 상세 정보 */}
+              {analysisResult.yoloAnalysis && analysisResult.yoloAnalysis.allDetections && (
+                <div style={{ marginTop: '1rem' }}>
+                  <h5 style={{ marginBottom: '0.5rem' }}>모든 감지된 객체:</h5>
+                  <div style={{ fontSize: '0.9rem' }}>
+                    {analysisResult.yoloAnalysis.allDetections.map((detection, index) => (
+                      <div key={index} style={{ 
+                        padding: '0.5rem', 
+                        backgroundColor: '#e9ecef', 
+                        borderRadius: '3px',
+                        marginBottom: '0.5rem'
+                      }}>
+                        <strong>{getKoreanLabel(detection.class)}</strong> - 
+                        신뢰도: {(detection.confidence * 100).toFixed(1)}%
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              )}
             </div>
             
             <div>
-              <h4 style={{ marginBottom: '1rem' }}>분석된 이미지</h4>
-              <img 
-                src={previewUrl} 
-                alt="Analyzed" 
-                style={{ 
-                  width: '100%', 
-                  maxHeight: '200px',
-                  objectFit: 'cover',
-                  borderRadius: '5px'
-                }} 
-              />
+              <h4 style={{ marginBottom: '1rem' }}>분석된 이미지 (바운딩박스)</h4>
+              {analysisResult.yoloAnalysis && analysisResult.yoloAnalysis.allDetections ? (
+                <BoundingBoxImage
+                  imageUrl={previewUrl}
+                  detections={analysisResult.yoloAnalysis.allDetections}
+                  getKoreanLabel={getKoreanLabel}
+                  getRiskLevelColor={getRiskLevelColor}
+                />
+              ) : (
+                <img 
+                  src={previewUrl} 
+                  alt="Analyzed" 
+                  style={{ 
+                    width: '100%', 
+                    maxHeight: '200px',
+                    objectFit: 'cover',
+                    borderRadius: '5px'
+                  }} 
+                />
+              )}
             </div>
           </div>
+
+          {/* YOLO 분석 오류 표시 */}
+          {analysisResult.yoloError && (
+            <div style={{ 
+              padding: '1rem', 
+              backgroundColor: '#f8d7da', 
+              borderRadius: '5px',
+              border: '1px solid #f5c6cb',
+              marginBottom: '1rem'
+            }}>
+              <strong>⚠️ YOLO 분석 경고:</strong> {analysisResult.yoloError}
+            </div>
+          )}
 
           <div style={{ 
             textAlign: 'center', 
@@ -277,7 +335,7 @@ const UploadPage: React.FC = () => {
             border: '1px solid #c3e6c3'
           }}>
             <p style={{ fontSize: '1.1rem', color: '#2d5a2d', margin: 0 }}>
-              ✅ 해당 이미지와 분석 결과를 신고 접수하였습니다. 감사합니다! 😉
+              ✅ YOLO AI 분석 완료! 해당 이미지와 분석 결과를 신고 접수하였습니다. 감사합니다! 🤖
             </p>
           </div>
         </div>
@@ -297,3 +355,4 @@ const UploadPage: React.FC = () => {
 };
 
 export default UploadPage;
+

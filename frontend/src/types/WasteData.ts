@@ -30,8 +30,28 @@ export interface UploadResponse {
   filename?: string;
   detectedLabel?: string;
   riskScore?: number;
+  confidence?: number;
   data?: WasteData;
   error?: string;
+  yoloError?: string;
+  yoloAnalysis?: {
+    success: boolean;
+    detectedLabel: string;
+    confidence: number;
+    riskScore: number;
+    allDetections?: Array<{
+      class: string;
+      confidence: number;
+      class_id: number;
+      bbox?: {
+        x1: number;
+        y1: number;
+        x2: number;
+        y2: number;
+      };
+    }>;
+    error?: string;
+  };
 }
 
 export interface HomeData {

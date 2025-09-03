@@ -57,6 +57,12 @@ export const wasteDataApi = {
     });
     return response.data;
   },
+
+  // YOLO 서비스 상태 확인
+  getYOLOStatus: async () => {
+    const response = await api.get('/waste-data/yolo-status');
+    return response.data;
+  },
 };
 
 export const homeApi = {

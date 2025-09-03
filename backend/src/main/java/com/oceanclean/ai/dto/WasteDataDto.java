@@ -51,6 +51,11 @@ public class WasteDataDto {
             case "Rubber_etc": return "고무류";
             case "Rubber_tire": return "고무타이어";
             case "Wood": return "목재";
+            case "PET_Bottle": return "PET 병";
+            case "Bottle": return "병";
+            case "Can": return "캔";
+            case "Bag": return "비닐봉지";
+            case "Container": return "컨테이너";
             default: return "기타";
         }
     }

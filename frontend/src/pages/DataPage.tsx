@@ -72,7 +72,12 @@ const DataPage: React.FC = () => {
       "Rope": "로프",
       "Rubber_etc": "고무류",
       "Rubber_tire": "고무타이어",
-      "Wood": "목재"
+      "Wood": "목재",
+      "PET_Bottle": "PET 병",
+      "Bottle": "병",
+      "Can": "캔",
+      "Bag": "비닐봉지",
+      "Container": "컨테이너"
     };
     return labelMap[label] || label;
   };
