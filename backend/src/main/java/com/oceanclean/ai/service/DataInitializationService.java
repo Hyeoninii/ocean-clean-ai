@@ -33,7 +33,7 @@ public class DataInitializationService implements CommandLineRunner {
         // JSON 파일에서 데이터 로드 (Python 스크립트로 미리 변환된 데이터)
         // 백엔드 폴더에서 실행되므로 상위 폴더의 data 경로 사용
         // 실제 이미지가 존재하는 데이터만 사용
-        String jsonPath = "../data/filtered_data.json";
+        String jsonPath = "data/filtered_data.json";
         
         try {
             ObjectMapper objectMapper = new ObjectMapper();
@@ -75,9 +75,9 @@ public class DataInitializationService implements CommandLineRunner {
     private void loadDataFromCSVFiles() {
         // 여러 CSV 파일에서 데이터 로드 (폴백 방식)
         String[] csvFiles = {
-            "../data/csv/ocean_risk.csv",
-            "../data/csv/test.csv", 
-            "../data/csv/image_data.csv"
+            "data/csv/ocean_risk.csv",
+            "data/csv/test.csv", 
+            "data/csv/image_data.csv"
         };
         
         for (String csvPath : csvFiles) {
