@@ -73,7 +73,7 @@ const DataPage: React.FC = () => {
       "Rubber_etc": "고무류",
       "Rubber_tire": "고무타이어",
       "Wood": "목재",
-      "PET_Bottle": "PET 병",
+      "PET_Bottle": "페트병",
       "Bottle": "병",
       "Can": "캔",
       "Bag": "비닐봉지",
@@ -97,11 +97,11 @@ const DataPage: React.FC = () => {
 
   return (
     <div className="page-container">
-      <div className="page-title">🌊 해양 쓰레기 탐지 데이터</div>
+      <div className="page-title">해양 쓰레기 현황</div>
       
       {/* 필터 섹션 */}
       <div className="card" style={{ marginBottom: '2rem' }}>
-        <h3 style={{ marginBottom: '1rem' }}>필터 옵션</h3>
+        <h3 style={{ marginBottom: '1rem' }}>카테고리</h3>
         <div className="grid grid-2">
           <div>
             <label style={{ display: 'block', marginBottom: '0.5rem', fontWeight: 'bold' }}>
@@ -147,7 +147,7 @@ const DataPage: React.FC = () => {
               <div style={{ fontSize: '2rem', fontWeight: 'bold', color: '#667eea' }}>
                 {wasteData.length.toLocaleString()}
               </div>
-              <div>총 탐지 건수</div>
+              <div>총 현황</div>
             </div>
             <div style={{ textAlign: 'center' }}>
               <div style={{ fontSize: '2rem', fontWeight: 'bold', color: '#667eea' }}>
@@ -215,12 +215,6 @@ const DataPage: React.FC = () => {
               <strong>위치:</strong> {item.locationName}
             </div>
             
-            <button 
-              className="button"
-              style={{ width: '100%', fontSize: '0.9rem' }}
-            >
-              🧹 치워야 할 쓰레기 추천
-            </button>
           </div>
         ))}
       </div>

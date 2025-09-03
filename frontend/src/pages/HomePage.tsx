@@ -23,7 +23,7 @@ const HomePage: React.FC = () => {
             "🐟 해양 생태계 데이터 기반 보호",
             "📷 AI 이미지 분석 + 위험도 지도 시각화"
           ],
-          imagePath: "/assets/image.png"
+          imagePath: "/_assets/image.png"
         });
       } finally {
         setLoading(false);
@@ -43,11 +43,11 @@ const HomePage: React.FC = () => {
 
   return (
     <div className="page-container">
-      <div className="page-title">{homeData?.title}</div>
-      
       <div className="grid grid-2" style={{ alignItems: 'center', gap: '3rem' }}>
         <div>
-          <p style={{ fontSize: '1.2rem', lineHeight: '1.6', marginBottom: '2rem', color: '#555' }}>
+          <div className="page-title" style={{ textAlign: 'center', marginBottom: '1.5rem', fontSize: '3rem' }}>{homeData?.title}</div>
+          
+          <p style={{ fontSize: '1.2rem', lineHeight: '1.6', marginBottom: '2rem', color: '#ffffff' }}>
             {homeData?.description}
           </p>
           
@@ -59,7 +59,8 @@ const HomePage: React.FC = () => {
                 padding: '0.5rem',
                 backgroundColor: '#f8f9fa',
                 borderRadius: '5px',
-                borderLeft: '4px solid #667eea'
+                borderLeft: '4px solid #667eea',
+                color: '#000000'
               }}>
                 {feature}
               </div>
@@ -72,7 +73,7 @@ const HomePage: React.FC = () => {
               onClick={() => window.location.href = '/upload'}
               style={{ fontSize: '1.1rem', padding: '1rem 2rem' }}
             >
-              📷 이미지 분석 시작하기
+              이미지 업로드하러 가기
             </button>
           </div>
         </div>

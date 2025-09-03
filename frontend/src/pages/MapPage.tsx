@@ -59,7 +59,7 @@ const MapPage: React.FC = () => {
       "Rubber_etc": "고무류",
       "Rubber_tire": "고무타이어",
       "Wood": "목재",
-      "PET_Bottle": "PET 병",
+      "PET_Bottle": " 페트병",
       "Bottle": "병",
       "Can": "캔",
       "Bag": "비닐봉지",
@@ -70,7 +70,7 @@ const MapPage: React.FC = () => {
 
   // 지도 중심점 계산 (데이터의 평균 위치)
   const getMapCenter = () => {
-    if (wasteData.length === 0) return [35.0, 129.0]; // 기본값 (부산)
+    if (wasteData.length === 0) return [50, 50];
     
     const avgLat = wasteData.reduce((sum, item) => sum + item.latitude, 0) / wasteData.length;
     const avgLon = wasteData.reduce((sum, item) => sum + item.longitude, 0) / wasteData.length;
@@ -88,7 +88,7 @@ const MapPage: React.FC = () => {
 
   return (
     <div className="page-container">
-      <div className="page-title">🗺️ 해양 쓰레기 위험 지도</div>
+      <div className="page-title">해양 쓰레기 위험도 지도</div>
       
       {/* 범례 */}
       <div className="card" style={{ marginBottom: '1rem' }}>
@@ -137,10 +137,11 @@ const MapPage: React.FC = () => {
       <div style={{ height: '600px', borderRadius: '10px', overflow: 'hidden', boxShadow: '0 4px 6px rgba(0,0,0,0.1)' }}>
         <MapContainer
           center={getMapCenter() as [number, number]}
-          zoom={9}
-          minZoom={8}
-          maxZoom={15}
+          zoom={8}
+          minZoom={5}
+          maxZoom={8}
           style={{ height: '100%', width: '100%' }}
+          attributionControl={false}
         >
           <TileLayer
             attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'

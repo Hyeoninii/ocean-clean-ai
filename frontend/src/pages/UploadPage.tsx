@@ -96,7 +96,7 @@ const UploadPage: React.FC = () => {
       "Rubber_etc": "고무류",
       "Rubber_tire": "고무타이어",
       "Wood": "목재",
-      "PET_Bottle": "PET 병",
+      "PET_Bottle": "페트병",
       "Bottle": "병",
       "Can": "캔",
       "Bag": "비닐봉지",
@@ -121,17 +121,15 @@ const UploadPage: React.FC = () => {
 
   return (
     <div className="page-container">
-      <div className="page-title">📷 해양 쓰레기 이미지 분석</div>
+      <div className="page-title">해양 쓰레기 이미지 분석</div>
       
       <div style={{ textAlign: 'center', marginBottom: '2rem' }}>
-        <p style={{ fontSize: '1.2rem', color: '#666', marginBottom: '1rem' }}>
-          해양 쓰레기 사진을 업로드하면 AI가 자동으로 분석하여 위험도를 평가합니다.
-        </p>
+      
       </div>
 
       {/* 모델 선택 섹션 */}
       <div className="card" style={{ marginBottom: '2rem' }}>
-        <h3 style={{ marginBottom: '1rem' }}>🤖 AI 모델 선택</h3>
+        <h3 style={{ marginBottom: '1rem' }}>쓰레기 위치 선택</h3>
         <div style={{ display: 'flex', gap: '2rem', justifyContent: 'center', flexWrap: 'wrap' }}>
           {availableModels && (
             <>
@@ -146,13 +144,24 @@ const UploadPage: React.FC = () => {
                   disabled={!availableModels.coastal?.available}
                 />
                 <label htmlFor="coastal" style={{ 
-                  color: availableModels.coastal?.available ? '#333' : '#999',
-                  cursor: availableModels.coastal?.available ? 'pointer' : 'not-allowed'
+                  color: availableModels.coastal?.available ? '#ffffff' : '#999',
+                  cursor: availableModels.coastal?.available ? 'pointer' : 'not-allowed',
+                  fontWeight: '500'
                 }}>
-                  🏖️ 해안 쓰레기 모델
+                  해안 쓰레기
                   {!availableModels.coastal?.available && ' (사용 불가)'}
                 </label>
               </div>
+              
+              {/* 구분선 */}
+              <div style={{ 
+                width: '1px', 
+                height: '20px', 
+                backgroundColor: '#666', 
+                margin: '0 1rem',
+                opacity: 0.6
+              }}></div>
+              
               <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
                 <input
                   type="radio"
@@ -164,22 +173,18 @@ const UploadPage: React.FC = () => {
                   disabled={!availableModels.floating?.available}
                 />
                 <label htmlFor="floating" style={{ 
-                  color: availableModels.floating?.available ? '#333' : '#999',
-                  cursor: availableModels.floating?.available ? 'pointer' : 'not-allowed'
+                  color: availableModels.floating?.available ? '#ffffff' : '#999',
+                  cursor: availableModels.floating?.available ? 'pointer' : 'not-allowed',
+                  fontWeight: '500'
                 }}>
-                  🌊 부유 쓰레기 모델
+                  부유 쓰레기
                   {!availableModels.floating?.available && ' (사용 불가)'}
                 </label>
               </div>
             </>
           )}
         </div>
-        {availableModels && (
-          <div style={{ marginTop: '1rem', fontSize: '0.9rem', color: '#666' }}>
-            <p><strong>선택된 모델:</strong> {availableModels[selectedModel]?.name || '알 수 없음'}</p>
-            <p><strong>모델 경로:</strong> {availableModels[selectedModel]?.path || '알 수 없음'}</p>
-          </div>
-        )}
+        
       </div>
 
       {/* 파일 업로드 섹션 */}
@@ -350,7 +355,7 @@ const UploadPage: React.FC = () => {
               {/* YOLO 분석 상세 정보 */}
               {analysisResult.yoloAnalysis && analysisResult.yoloAnalysis.allDetections && (
                 <div style={{ marginTop: '1rem' }}>
-                  <h5 style={{ marginBottom: '0.5rem' }}>📊 객체 탐지 상세 정보</h5>
+                  <h5 style={{ marginBottom: '0.5rem' }}>객체 탐지 상세 정보</h5>
                   
                   {/* 객체 종류별 개수 통계 */}
                   <div style={{ marginBottom: '1rem' }}>
@@ -455,7 +460,7 @@ const UploadPage: React.FC = () => {
       {/* 안내 메시지 */}
       {!uploadedFile && !uploading && (
         <div className="card" style={{ textAlign: 'center', padding: '2rem' }}>
-          <div style={{ fontSize: '2rem', marginBottom: '1rem' }}>📷</div>
+         
           <p style={{ fontSize: '1.1rem', color: '#666' }}>
             사진을 업로드하면 AI 분석이 시작됩니다.
           </p>

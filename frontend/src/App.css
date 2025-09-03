@@ -57,11 +57,11 @@ body {
 }
 
 .page-title {
-  font-size: 2rem;
+  font-size: 2.5rem;
   color: #f1f5f9;
   margin-bottom: 1.5rem;
   text-align: center;
-  font-weight: 600;
+  font-weight: 800;
 }
 
 .card {
@@ -74,18 +74,21 @@ body {
 }
 
 .button {
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  background: linear-gradient(135deg, #0891b2 0%, #0e7490 50%, #155e75 100%);
   color: white;
   border: none;
   padding: 0.75rem 1.5rem;
   border-radius: 5px;
   cursor: pointer;
   font-size: 1rem;
-  transition: transform 0.2s ease;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 15px rgba(8, 145, 178, 0.3);
 }
 
 .button:hover {
-  transform: translateY(-2px);
+  transform: translateY(-3px);
+  box-shadow: 0 6px 20px rgba(8, 145, 178, 0.4);
+  background: linear-gradient(135deg, #06b6d4 0%, #0891b2 50%, #0e7490 100%);
 }
 
 .button:disabled {
