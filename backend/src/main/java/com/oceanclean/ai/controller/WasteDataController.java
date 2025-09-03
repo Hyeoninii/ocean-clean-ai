@@ -2,6 +2,7 @@ package com.oceanclean.ai.controller;
 
 import com.oceanclean.ai.dto.WasteDataDto;
 import com.oceanclean.ai.service.WasteDataService;
+import com.oceanclean.ai.service.YOLOAnalysisService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.http.HttpStatus;
@@ -21,6 +22,9 @@ public class WasteDataController {
     
     @Autowired
     private WasteDataService wasteDataService;
+    
+    @Autowired
+    private YOLOAnalysisService yoloAnalysisService;
     
     @GetMapping
     public ResponseEntity<List<WasteDataDto>> getAllWasteData() {
@@ -78,10 +82,26 @@ public class WasteDataController {
         try {
             // 파일 저장
             String filename = wasteDataService.saveUploadedFile(file);
+            String fullImagePath = "data/images/" + filename;
             
-            // YOLO 분석 시뮬레이션 (실제로는 YOLO 모델을 호출해야 함)
-            String detectedLabel = simulateYOLOAnalysis();
-            Double riskScore = calculateRiskScore(detectedLabel);
+            // YOLO 모델을 사용한 실제 분석
+            Map<String, Object> yoloResult = yoloAnalysisService.analyzeImage(fullImagePath);
+            
+            String detectedLabel;
+            Double riskScore;
+            Double confidence;
+            
+            if ((Boolean) yoloResult.get("success")) {
+                detectedLabel = (String) yoloResult.get("detectedLabel");
+                riskScore = (Double) yoloResult.get("riskScore");
+                confidence = (Double) yoloResult.get("confidence");
+            } else {
+                // YOLO 분석 실패 시 기본값 사용
+                detectedLabel = "Unknown";
+                riskScore = 3.0;
+                confidence = 0.0;
+                response.put("yoloError", yoloResult.get("error"));
+            }
             
             // 데이터베이스에 저장
             WasteDataDto savedData = wasteDataService.processUploadedImage(filename, detectedLabel, riskScore);
@@ -90,7 +110,9 @@ public class WasteDataController {
             response.put("filename", filename);
             response.put("detectedLabel", detectedLabel);
             response.put("riskScore", riskScore);
+            response.put("confidence", confidence);
             response.put("data", savedData);
+            response.put("yoloAnalysis", yoloResult);
             
             return ResponseEntity.ok(response);
             
@@ -105,25 +127,10 @@ public class WasteDataController {
         }
     }
     
-    private String simulateYOLOAnalysis() {
-        // 실제로는 YOLO 모델을 호출해야 함
-        String[] labels = {"Fish_net", "Fish_trap", "Glass", "Metal", "Plastic", "Rope", "Wood"};
-        return labels[(int) (Math.random() * labels.length)];
+    @GetMapping("/yolo-status")
+    public ResponseEntity<Map<String, Object>> getYOLOStatus() {
+        Map<String, Object> status = yoloAnalysisService.getServiceStatus();
+        return ResponseEntity.ok(status);
     }
-    
-    private Double calculateRiskScore(String label) {
-        // 라벨에 따른 위험도 점수 계산
-        Map<String, Double> riskScores = new HashMap<>();
-        riskScores.put("Fish_net", 4.5);
-        riskScores.put("Fish_trap", 3.0);
-        riskScores.put("Glass", 3.8);
-        riskScores.put("Metal", 3.5);
-        riskScores.put("Plastic", 4.0);
-        riskScores.put("Rope", 3.2);
-        riskScores.put("Wood", 2.8);
-        
-        return riskScores.getOrDefault(label, 3.0);
-    }
-    
 
 }
