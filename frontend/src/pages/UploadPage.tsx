@@ -332,27 +332,70 @@ const UploadPage: React.FC = () => {
                     {analysisResult.riskScore?.toFixed(2)} ({getRiskLevelText(analysisResult.riskScore || 0)})
                   </span>
                 </p>
-                <p>
+                <p style={{ marginBottom: '0.5rem' }}>
                   <strong>위치:</strong> {analysisResult.data?.locationName}
+                </p>
+                <p>
+                  <strong>총 탐지 객체 수:</strong> 
+                  <span style={{ 
+                    color: '#667eea',
+                    fontWeight: 'bold',
+                    marginLeft: '0.5rem'
+                  }}>
+                    {analysisResult.yoloAnalysis?.allDetections?.length || 0}개
+                  </span>
                 </p>
               </div>
               
               {/* YOLO 분석 상세 정보 */}
               {analysisResult.yoloAnalysis && analysisResult.yoloAnalysis.allDetections && (
                 <div style={{ marginTop: '1rem' }}>
-                  <h5 style={{ marginBottom: '0.5rem' }}>모든 감지된 객체:</h5>
-                  <div style={{ fontSize: '0.9rem' }}>
-                    {analysisResult.yoloAnalysis.allDetections.map((detection, index) => (
-                      <div key={index} style={{ 
-                        padding: '0.5rem', 
-                        backgroundColor: '#e9ecef', 
-                        borderRadius: '3px',
-                        marginBottom: '0.5rem'
-                      }}>
-                        <strong>{getKoreanLabel(detection.class)}</strong> - 
-                        신뢰도: {(detection.confidence * 100).toFixed(1)}%
-                      </div>
-                    ))}
+                  <h5 style={{ marginBottom: '0.5rem' }}>📊 객체 탐지 상세 정보</h5>
+                  
+                  {/* 객체 종류별 개수 통계 */}
+                  <div style={{ marginBottom: '1rem' }}>
+                    <h6 style={{ marginBottom: '0.5rem', color: '#667eea' }}>종류별 탐지 개수:</h6>
+                    <div style={{ fontSize: '0.9rem' }}>
+                      {(() => {
+                        const classCounts: { [key: string]: number } = {};
+                        analysisResult.yoloAnalysis.allDetections.forEach(detection => {
+                          const koreanLabel = getKoreanLabel(detection.class);
+                          classCounts[koreanLabel] = (classCounts[koreanLabel] || 0) + 1;
+                        });
+                        
+                        return Object.entries(classCounts).map(([label, count]) => (
+                          <div key={label} style={{ 
+                            display: 'inline-block',
+                            padding: '0.3rem 0.6rem', 
+                            backgroundColor: '#e3f2fd', 
+                            borderRadius: '15px',
+                            margin: '0.2rem',
+                            fontSize: '0.8rem',
+                            border: '1px solid #bbdefb'
+                          }}>
+                            <strong>{label}</strong>: {count}개
+                          </div>
+                        ));
+                      })()}
+                    </div>
+                  </div>
+                  
+                  {/* 모든 감지된 객체 목록 */}
+                  <div>
+                    <h6 style={{ marginBottom: '0.5rem' }}>모든 감지된 객체:</h6>
+                    <div style={{ fontSize: '0.9rem' }}>
+                      {analysisResult.yoloAnalysis.allDetections.map((detection, index) => (
+                        <div key={index} style={{ 
+                          padding: '0.5rem', 
+                          backgroundColor: '#e9ecef', 
+                          borderRadius: '3px',
+                          marginBottom: '0.5rem'
+                        }}>
+                          <strong>{getKoreanLabel(detection.class)}</strong> - 
+                          신뢰도: {(detection.confidence * 100).toFixed(1)}%
+                        </div>
+                      ))}
+                    </div>
                   </div>
                 </div>
               )}
