@@ -112,8 +112,11 @@ const BoundingBoxImage: React.FC<BoundingBoxImageProps> = ({
       ctx.fillStyle = color;
       ctx.fillRect(scaledX1, scaledY1 - textHeight, textWidth + 8, textHeight);
 
-      // 라벨 텍스트
-      ctx.fillStyle = 'white';
+      // 라벨 텍스트 (흰색 테두리 + 검은색 텍스트)
+      ctx.strokeStyle = 'white';
+      ctx.lineWidth = 2;
+      ctx.strokeText(labelText, scaledX1 + 4, scaledY1 - 2);
+      ctx.fillStyle = 'black';
       ctx.fillText(labelText, scaledX1 + 4, scaledY1 - 2);
     });
   };
