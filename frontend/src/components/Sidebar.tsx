@@ -21,7 +21,6 @@ const Sidebar: React.FC = () => {
       </div>
       
       <div className="sidebar-menu">
-        <h3 className="menu-title">메뉴를 선택하세요</h3>
         <nav className="nav-items">
           <Link 
             to="/" 
@@ -53,14 +52,6 @@ const Sidebar: React.FC = () => {
           >
             <span className="nav-indicator"></span>
             <span className="nav-text">업로드</span>
-          </Link>
-          
-          <Link 
-            to="/test" 
-            className={`nav-item ${isActive('/test') ? 'active' : ''}`}
-          >
-            <span className="nav-indicator"></span>
-            <span className="nav-text">테스트</span>
           </Link>
         </nav>
       </div>

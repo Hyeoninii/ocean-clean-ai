@@ -5,7 +5,6 @@ import HomePage from './pages/HomePage';
 import DataPage from './pages/DataPage';
 import MapPage from './pages/MapPage';
 import UploadPage from './pages/UploadPage';
-import TestPage from './pages/TestPage';
 import './App.css';
 
 function App() {
@@ -21,7 +20,6 @@ function App() {
               <Route path="/data" element={<DataPage />} />
               <Route path="/map" element={<MapPage />} />
               <Route path="/upload" element={<UploadPage />} />
-              <Route path="/test" element={<TestPage />} />
             </Routes>
           </main>
 

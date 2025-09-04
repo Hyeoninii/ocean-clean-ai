@@ -56,7 +56,6 @@ export interface UploadResponse {
 
 export interface HomeData {
   title: string;
-  description: string;
   features: string[];
   imagePath: string;
 }

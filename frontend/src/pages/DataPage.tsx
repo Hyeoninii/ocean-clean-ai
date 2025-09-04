@@ -97,7 +97,7 @@ const DataPage: React.FC = () => {
 
   return (
     <div className="page-container">
-      <div className="page-title">🌊 해양 쓰레기 탐지 데이터</div>
+      <div className="page-title">해양 쓰레기 현황</div>
       
       {/* 필터 섹션 */}
       <div className="card" style={{ marginBottom: '2rem' }}>
@@ -214,13 +214,6 @@ const DataPage: React.FC = () => {
             <div style={{ marginBottom: '1rem' }}>
               <strong>위치:</strong> {item.locationName}
             </div>
-            
-            <button 
-              className="button"
-              style={{ width: '100%', fontSize: '0.9rem' }}
-            >
-              🧹 치워야 할 쓰레기 추천
-            </button>
           </div>
         ))}
       </div>
