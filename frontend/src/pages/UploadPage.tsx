@@ -124,7 +124,6 @@ const UploadPage: React.FC = () => {
       <div className="page-title">해양 쓰레기 이미지 분석</div>
       
       <div style={{ textAlign: 'center', marginBottom: '2rem' }}>
-  
       </div>
 
       {/* 모델 선택 섹션 */}
@@ -160,6 +159,7 @@ const UploadPage: React.FC = () => {
                 </label>
               </div>
               <span style={{ color: '#2193b0', fontWeight: 'bold', fontSize: '1.5rem', margin: '0 0.5rem' }}>|</span>
+
               <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
                 <input
                   type="radio"
@@ -189,6 +189,7 @@ const UploadPage: React.FC = () => {
             </>
           )}
         </div>
+
       </div>
 
       {/* 파일 업로드 섹션 */}
@@ -361,6 +362,7 @@ const UploadPage: React.FC = () => {
               {analysisResult.yoloAnalysis && analysisResult.yoloAnalysis.allDetections && (
                 <div style={{ marginTop: '1rem' }}>
                   <h5 style={{ marginBottom: '0.5rem' }}>상세 정보</h5>
+
                   
                   {/* 객체 종류별 개수 통계 */}
                   <div style={{ marginBottom: '1rem' }}>
@@ -469,6 +471,7 @@ const UploadPage: React.FC = () => {
       {/* 안내 메시지 */}
       {!uploadedFile && !uploading && (
         <div className="card" style={{ textAlign: 'center', padding: '2rem' }}>
+
           <p style={{ fontSize: '1.1rem', color: '#666' }}>
             사진을 업로드하면 AI 분석이 시작됩니다.
           </p>

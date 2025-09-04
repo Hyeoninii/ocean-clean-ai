@@ -61,7 +61,7 @@ body {
   color: #f1f5f9;
   margin-bottom: 1.5rem;
   text-align: center;
-  font-weight: 600;
+  font-weight: 800;
 }
 
 .card {
@@ -85,7 +85,9 @@ body {
 }
 
 .button:hover {
-  transform: translateY(-2px);
+  transform: translateY(-3px);
+  box-shadow: 0 6px 20px rgba(8, 145, 178, 0.4);
+  background: linear-gradient(135deg, #06b6d4 0%, #0891b2 50%, #0e7490 100%);
 }
 
 .button:disabled {
