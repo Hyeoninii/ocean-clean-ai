@@ -16,13 +16,14 @@ import logging
 warnings.filterwarnings('ignore')
 logging.getLogger('ultralytics').setLevel(logging.ERROR)
 
-def analyze_image_with_yolo(image_path, model_path):
+def analyze_image_with_yolo(image_path, model_path, existing_risk_scores=None):
     """
     YOLO 모델을 사용하여 이미지를 분석하고 결과를 반환
     
     Args:
         image_path (str): 분석할 이미지 파일 경로
         model_path (str): YOLO 모델 파일 경로 (.pt)
+        existing_risk_scores (list): 기존 데이터베이스의 위험도 점수들
     
     Returns:
         dict: 분석 결과 (detected_label, confidence, risk_score)
@@ -77,7 +78,7 @@ def analyze_image_with_yolo(image_path, model_path):
                         best_label = class_name
         
         # 위험도 점수 계산
-        risk_score = calculate_risk_score(best_label, max_confidence)
+        risk_score = calculate_risk_score(best_label, max_confidence, existing_risk_scores)
         
         return {
             'success': True,
@@ -96,17 +97,20 @@ def analyze_image_with_yolo(image_path, model_path):
             'risk_score': 3.0
         }
 
-def calculate_risk_score(label, confidence):
+def calculate_risk_score(label, confidence, existing_risk_scores=None):
     """
-    라벨과 신뢰도에 따라 위험도 점수 계산
+    라벨과 신뢰도에 따라 위험도 점수 계산 (R 코드 방식 적용)
     
     Args:
         label (str): 감지된 객체 라벨
         confidence (float): 신뢰도 (0-1)
+        existing_risk_scores (list): 기존 데이터베이스의 위험도 점수들
     
     Returns:
         float: 위험도 점수 (0-5)
     """
+    import numpy as np
+    
     # 기본 위험도 점수 (라벨별)
     base_risk_scores = {
         'Fish_net': 4.5,
@@ -131,25 +135,73 @@ def calculate_risk_score(label, confidence):
     # 신뢰도에 따른 조정 (신뢰도가 높을수록 위험도 증가)
     confidence_factor = 0.5 + (confidence * 0.5)  # 0.5 ~ 1.0
     
-    # 최종 위험도 점수 계산
-    final_score = base_score * confidence_factor
+    # 초기 위험도 점수 계산
+    initial_score = base_score * confidence_factor
+    
+    # R 코드 방식: vals_obs <- obs_risk$RiskSum 방식 적용
+    if existing_risk_scores and len(existing_risk_scores) > 0:
+        # vals_obs <- obs_risk$RiskSum
+        vals_obs = np.array(existing_risk_scores)
+        # vals_obs <- vals_obs[is.finite(vals_obs)]
+        vals_obs = vals_obs[np.isfinite(vals_obs)]
+        
+        if len(vals_obs) > 0:
+            # 극단치 컷 (5%, 95%) - cut_obs <- quantile(vals_obs, c(0.05, 0.95), na.rm = TRUE)
+            cut_obs = np.percentile(vals_obs, [5, 95])
+            
+            # Winsorize - vals_wins <- pmin(pmax(vals_obs, cut_obs[1]), cut_obs[2])
+            winsorized_score = np.clip(initial_score, cut_obs[0], cut_obs[1])
+            
+            # 5분위 계산 (0%, 20%, 40%, 60%, 80%, 100%) - qs_obs <- quantile(vals_wins, probs = seq(0, 1, 0.2), na.rm = TRUE)
+            qs_obs = np.percentile(vals_obs, [0, 20, 40, 60, 80, 100])
+            qs_obs = np.unique(qs_obs)
+            
+            # 5분위 구간에 맞춰 점수 조정 (R의 colorBin 방식)
+            if len(qs_obs) > 1:
+                # 5분위 구간 중 어느 구간에 속하는지 찾기
+                for i in range(len(qs_obs) - 1):
+                    if qs_obs[i] <= winsorized_score <= qs_obs[i + 1]:
+                        # 해당 구간의 중간값으로 조정 (YlOrRd 팔레트 방식)
+                        final_score = (qs_obs[i] + qs_obs[i + 1]) / 2
+                        break
+                else:
+                    final_score = winsorized_score
+            else:
+                final_score = winsorized_score
+        else:
+            final_score = initial_score
+    else:
+        # 기존 데이터가 없는 경우 기본 방식 사용
+        final_score = initial_score
     
     # 0-5 범위로 제한
     return min(5.0, max(0.0, final_score))
 
 def main():
     """
-    메인 함수 - 명령행 인자로 이미지 경로와 모델 경로를 받음
+    메인 함수 - 명령행 인자로 이미지 경로, 모델 경로, 기존 위험도 데이터를 받음
     """
-    if len(sys.argv) != 3:
+    if len(sys.argv) < 3 or len(sys.argv) > 4:
         print(json.dumps({
             'success': False,
-            'error': 'Usage: python yolo_analyzer.py <image_path> <model_path>'
+            'error': 'Usage: python yolo_analyzer.py <image_path> <model_path> [existing_risk_scores_json]'
         }))
         sys.exit(1)
     
     image_path = sys.argv[1]
     model_path = sys.argv[2]
+    existing_risk_scores = None
+    
+    # 기존 위험도 데이터가 제공된 경우 파싱
+    if len(sys.argv) == 4:
+        try:
+            existing_risk_scores = json.loads(sys.argv[3])
+        except json.JSONDecodeError:
+            print(json.dumps({
+                'success': False,
+                'error': 'Invalid JSON format for existing risk scores'
+            }))
+            sys.exit(1)
     
     # 파일 존재 확인
     if not os.path.exists(image_path):
@@ -167,7 +219,7 @@ def main():
         sys.exit(1)
     
     # YOLO 분석 실행
-    result = analyze_image_with_yolo(image_path, model_path)
+    result = analyze_image_with_yolo(image_path, model_path, existing_risk_scores)
     
     # JSON 형태로 결과 출력
     print(json.dumps(result, ensure_ascii=False))

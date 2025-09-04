@@ -2,6 +2,7 @@ package com.oceanclean.ai.service;
 
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.io.BufferedReader;
@@ -22,6 +23,9 @@ public class YOLOAnalysisService {
     
     private final ObjectMapper objectMapper = new ObjectMapper();
     
+    @Autowired
+    private WasteDataService wasteDataService;
+    
     /**
      * YOLO 모델을 사용하여 이미지를 분석합니다.
      * 
@@ -30,18 +34,39 @@ public class YOLOAnalysisService {
      * @return 분석 결과 (감지된 라벨, 신뢰도, 위험도 점수)
      */
     public Map<String, Object> analyzeImage(String imagePath, String modelType) {
+        // 기존 데이터베이스의 위험도 점수들을 가져와서 R 코드 방식 적용
+        java.util.List<Double> existingRiskScores = wasteDataService.getAllRiskScores();
+        return analyzeImage(imagePath, modelType, existingRiskScores);
+    }
+    
+    /**
+     * YOLO 모델을 사용하여 이미지를 분석합니다. (기존 위험도 데이터 포함)
+     * 
+     * @param imagePath 분석할 이미지 파일 경로
+     * @param modelType 모델 타입 ("coastal" 또는 "floating")
+     * @param existingRiskScores 기존 데이터베이스의 위험도 점수들
+     * @return 분석 결과 (감지된 라벨, 신뢰도, 위험도 점수)
+     */
+    public Map<String, Object> analyzeImage(String imagePath, String modelType, java.util.List<Double> existingRiskScores) {
         Map<String, Object> result = new HashMap<>();
         
         try {
             // 모델 경로 선택
             String modelPath = getModelPath(modelType);
             
+            // 기존 위험도 데이터를 JSON으로 변환
+            String riskScoresJson = "[]";
+            if (existingRiskScores != null && !existingRiskScores.isEmpty()) {
+                riskScoresJson = objectMapper.writeValueAsString(existingRiskScores);
+            }
+            
             // Python 스크립트 실행
             ProcessBuilder processBuilder = new ProcessBuilder(
                 "python3",
                 PYTHON_SCRIPT_PATH,
                 imagePath,
-                modelPath
+                modelPath,
+                riskScoresJson
             );
             
             // 작업 디렉토리를 프로젝트 루트로 설정

@@ -163,10 +163,10 @@ const MapPage: React.FC = () => {
                     {getKoreanLabel(item.label)}
                   </h4>
                   <p style={{ marginBottom: '0.5rem' }}>
-                    <strong>위도:</strong> {item.latitude.toFixed(6)}
+                    <strong>위도:</strong> {item.latitude}
                   </p>
                   <p style={{ marginBottom: '0.5rem' }}>
-                    <strong>경도:</strong> {item.longitude.toFixed(6)}
+                    <strong>경도:</strong> {item.longitude}
                   </p>
                   <p style={{ marginBottom: '0.5rem' }}>
                     <strong>위험도:</strong> {item.riskScore.toFixed(2)} ({getRiskLevelText(item.riskScore)})

@@ -151,6 +151,17 @@ public class WasteDataService {
         return wasteDataRepository.findLabelCounts();
     }
     
+    /**
+     * 기존 데이터베이스의 모든 위험도 점수를 가져옵니다.
+     * 
+     * @return 위험도 점수 리스트
+     */
+    public List<Double> getAllRiskScores() {
+        return wasteDataRepository.findAll().stream()
+                .map(WasteData::getRiskScore)
+                .collect(Collectors.toList());
+    }
+    
     private WasteDataDto convertToDto(WasteData wasteData) {
         return new WasteDataDto(
                 wasteData.getId(),
