@@ -21,7 +21,6 @@ const Sidebar: React.FC = () => {
       </div>
       
       <div className="sidebar-menu">
-        <h3 className="menu-title">메뉴를 선택하세요</h3>
         <nav className="nav-items">
           <Link 
             to="/" 
@@ -36,7 +35,7 @@ const Sidebar: React.FC = () => {
             className={`nav-item ${isActive('/data') ? 'active' : ''}`}
           >
             <span className="nav-indicator"></span>
-            <span className="nav-text">데이터 현황</span>
+            <span className="nav-text">쓰레기 현황</span>
           </Link>
           
           <Link 
@@ -44,7 +43,7 @@ const Sidebar: React.FC = () => {
             className={`nav-item ${isActive('/map') ? 'active' : ''}`}
           >
             <span className="nav-indicator"></span>
-            <span className="nav-text">지도</span>
+            <span className="nav-text">위험도 지도</span>
           </Link>
           
           <Link 
@@ -52,15 +51,7 @@ const Sidebar: React.FC = () => {
             className={`nav-item ${isActive('/upload') ? 'active' : ''}`}
           >
             <span className="nav-indicator"></span>
-            <span className="nav-text">업로드</span>
-          </Link>
-          
-          <Link 
-            to="/test" 
-            className={`nav-item ${isActive('/test') ? 'active' : ''}`}
-          >
-            <span className="nav-indicator"></span>
-            <span className="nav-text">테스트</span>
+            <span className="nav-text">이미지 업로드</span>
           </Link>
         </nav>
       </div>

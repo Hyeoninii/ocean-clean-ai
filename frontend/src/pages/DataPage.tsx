@@ -214,7 +214,7 @@ const DataPage: React.FC = () => {
             <div style={{ marginBottom: '1rem' }}>
               <strong>위치:</strong> {item.locationName}
             </div>
-            
+
           </div>
         ))}
       </div>

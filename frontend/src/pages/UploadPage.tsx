@@ -124,12 +124,11 @@ const UploadPage: React.FC = () => {
       <div className="page-title">해양 쓰레기 이미지 분석</div>
       
       <div style={{ textAlign: 'center', marginBottom: '2rem' }}>
-      
       </div>
 
       {/* 모델 선택 섹션 */}
       <div className="card" style={{ marginBottom: '2rem' }}>
-        <h3 style={{ marginBottom: '1rem' }}>쓰레기 위치 선택</h3>
+        <h3 style={{ marginBottom: '1rem' }}>위치 선택</h3>
         <div style={{ display: 'flex', gap: '2rem', justifyContent: 'center', flexWrap: 'wrap' }}>
           {availableModels && (
             <>
@@ -144,24 +143,23 @@ const UploadPage: React.FC = () => {
                   disabled={!availableModels.coastal?.available}
                 />
                 <label htmlFor="coastal" style={{ 
-                  color: availableModels.coastal?.available ? '#ffffff' : '#999',
+                  color: availableModels.coastal?.available ? '#fff' : '#ccc',
+                  background: availableModels.coastal?.available ? 'linear-gradient(90deg, #2193b0 0%, #6dd5ed 100%)' : '#eee',
+                  padding: '0.5rem 1.2rem',
+                  borderRadius: '20px',
+                  fontWeight: 'bold',
+                  fontSize: '1.1rem',
                   cursor: availableModels.coastal?.available ? 'pointer' : 'not-allowed',
-                  fontWeight: '500'
+                  border: 'none',
+                  marginRight: '0.8rem',
+                  transition: 'background 0.3s, color 0.3s'
                 }}>
                   해안 쓰레기
                   {!availableModels.coastal?.available && ' (사용 불가)'}
                 </label>
               </div>
-              
-              {/* 구분선 */}
-              <div style={{ 
-                width: '1px', 
-                height: '20px', 
-                backgroundColor: '#666', 
-                margin: '0 1rem',
-                opacity: 0.6
-              }}></div>
-              
+              <span style={{ color: '#2193b0', fontWeight: 'bold', fontSize: '1.5rem', margin: '0 0.5rem' }}>|</span>
+
               <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
                 <input
                   type="radio"
@@ -173,9 +171,16 @@ const UploadPage: React.FC = () => {
                   disabled={!availableModels.floating?.available}
                 />
                 <label htmlFor="floating" style={{ 
-                  color: availableModels.floating?.available ? '#ffffff' : '#999',
+                  color: availableModels.floating?.available ? '#fff' : '#ccc',
+                  background: availableModels.floating?.available ? 'linear-gradient(90deg, #2193b0 0%, #6dd5ed 100%)' : '#eee',
+                  padding: '0.5rem 1.2rem',
+                  borderRadius: '20px',
+                  fontWeight: 'bold',
+                  fontSize: '1.1rem',
                   cursor: availableModels.floating?.available ? 'pointer' : 'not-allowed',
-                  fontWeight: '500'
+                  border: 'none',
+                  marginLeft: '0.8rem',
+                  transition: 'background 0.3s, color 0.3s'
                 }}>
                   부유 쓰레기
                   {!availableModels.floating?.available && ' (사용 불가)'}
@@ -184,7 +189,7 @@ const UploadPage: React.FC = () => {
             </>
           )}
         </div>
-        
+
       </div>
 
       {/* 파일 업로드 섹션 */}
@@ -234,7 +239,7 @@ const UploadPage: React.FC = () => {
                   }} 
                 />
               </div>
-              <p style={{ marginBottom: '1rem' }}>
+              <p style={{ marginBottom: '1rem', color: '#222' }}>
                 <strong>선택된 파일:</strong> {uploadedFile.name}
               </p>
               <div style={{ display: 'flex', gap: '1rem', justifyContent: 'center' }}>
@@ -303,7 +308,7 @@ const UploadPage: React.FC = () => {
       {/* 분석 결과 */}
       {analysisResult && analysisResult.success && (
         <div className="card">
-          <h3 style={{ marginBottom: '1rem' }}>📍 YOLO AI 분석 결과</h3>
+          <h3 style={{ marginBottom: '1rem' }}>분석 결과</h3>
           
           <div className="grid grid-2" style={{ marginBottom: '2rem' }}>
             <div>
@@ -312,12 +317,13 @@ const UploadPage: React.FC = () => {
                 padding: '1rem', 
                 backgroundColor: '#f8f9fa', 
                 borderRadius: '5px',
-                border: '1px solid #dee2e6'
+                border: '1px solid #dee2e6',
+                color: '#222' // 텍스트 어둡게
               }}>
-                <p style={{ marginBottom: '0.5rem' }}>
+                <p style={{ marginBottom: '0.5rem', color: '#222' }}>
                   <strong>종류:</strong> {getKoreanLabel(analysisResult.detectedLabel || '')}
                 </p>
-                <p style={{ marginBottom: '0.5rem' }}>
+                <p style={{ marginBottom: '0.5rem', color: '#222' }}>
                   <strong>신뢰도:</strong> 
                   <span style={{ 
                     color: analysisResult.confidence && analysisResult.confidence > 0.7 ? '#28a745' : '#ffc107',
@@ -327,7 +333,7 @@ const UploadPage: React.FC = () => {
                     {(analysisResult.confidence || 0) * 100}%
                   </span>
                 </p>
-                <p style={{ marginBottom: '0.5rem' }}>
+                <p style={{ marginBottom: '0.5rem', color: '#222' }}>
                   <strong>위험도:</strong> 
                   <span style={{ 
                     color: getRiskLevelColor(analysisResult.riskScore || 0),
@@ -337,10 +343,10 @@ const UploadPage: React.FC = () => {
                     {analysisResult.riskScore?.toFixed(2)} ({getRiskLevelText(analysisResult.riskScore || 0)})
                   </span>
                 </p>
-                <p style={{ marginBottom: '0.5rem' }}>
+                <p style={{ marginBottom: '0.5rem', color: '#222' }}>
                   <strong>위치:</strong> {analysisResult.data?.locationName}
                 </p>
-                <p>
+                <p style={{ color: '#222' }}>
                   <strong>총 탐지 객체 수:</strong> 
                   <span style={{ 
                     color: '#667eea',
@@ -355,12 +361,13 @@ const UploadPage: React.FC = () => {
               {/* YOLO 분석 상세 정보 */}
               {analysisResult.yoloAnalysis && analysisResult.yoloAnalysis.allDetections && (
                 <div style={{ marginTop: '1rem' }}>
-                  <h5 style={{ marginBottom: '0.5rem' }}>객체 탐지 상세 정보</h5>
+                  <h5 style={{ marginBottom: '0.5rem' }}>상세 정보</h5>
+
                   
                   {/* 객체 종류별 개수 통계 */}
                   <div style={{ marginBottom: '1rem' }}>
                     <h6 style={{ marginBottom: '0.5rem', color: '#667eea' }}>종류별 탐지 개수:</h6>
-                    <div style={{ fontSize: '0.9rem' }}>
+                    <div style={{ fontSize: '0.9rem', color: '#222' }}>
                       {(() => {
                         const classCounts: { [key: string]: number } = {};
                         analysisResult.yoloAnalysis.allDetections.forEach(detection => {
@@ -376,7 +383,8 @@ const UploadPage: React.FC = () => {
                             borderRadius: '15px',
                             margin: '0.2rem',
                             fontSize: '0.8rem',
-                            border: '1px solid #bbdefb'
+                            border: '1px solid #bbdefb',
+                            color: '#222'
                           }}>
                             <strong>{label}</strong>: {count}개
                           </div>
@@ -388,13 +396,14 @@ const UploadPage: React.FC = () => {
                   {/* 모든 감지된 객체 목록 */}
                   <div>
                     <h6 style={{ marginBottom: '0.5rem' }}>모든 감지된 객체:</h6>
-                    <div style={{ fontSize: '0.9rem' }}>
+                    <div style={{ fontSize: '0.9rem', color: '#222' }}>
                       {analysisResult.yoloAnalysis.allDetections.map((detection, index) => (
                         <div key={index} style={{ 
                           padding: '0.5rem', 
                           backgroundColor: '#e9ecef', 
                           borderRadius: '3px',
-                          marginBottom: '0.5rem'
+                          marginBottom: '0.5rem',
+                          color: '#222'
                         }}>
                           <strong>{getKoreanLabel(detection.class)}</strong> - 
                           신뢰도: {(detection.confidence * 100).toFixed(1)}%
@@ -414,7 +423,7 @@ const UploadPage: React.FC = () => {
                   detections={analysisResult.yoloAnalysis.allDetections}
                   getKoreanLabel={getKoreanLabel}
                   getRiskLevelColor={getRiskLevelColor}
-                />
+                />  
               ) : (
                 <img 
                   src={previewUrl} 
@@ -437,9 +446,10 @@ const UploadPage: React.FC = () => {
               backgroundColor: '#f8d7da', 
               borderRadius: '5px',
               border: '1px solid #f5c6cb',
-              marginBottom: '1rem'
+              marginBottom: '1rem',
+              color: '#222'
             }}>
-              <strong>⚠️ YOLO 분석 경고:</strong> {analysisResult.yoloError}
+              <strong>! YOLO 분석 실패:</strong> {analysisResult.yoloError}
             </div>
           )}
 
@@ -448,10 +458,11 @@ const UploadPage: React.FC = () => {
             padding: '1.5rem',
             backgroundColor: '#e8f5e8',
             borderRadius: '5px',
-            border: '1px solid #c3e6c3'
+            border: '1px solid #c3e6c3',
+            color: '#222'
           }}>
-            <p style={{ fontSize: '1.1rem', color: '#2d5a2d', margin: 0 }}>
-              ✅ YOLO AI 분석 완료! 해당 이미지와 분석 결과를 신고 접수하였습니다. 감사합니다! 🤖
+            <p style={{ fontSize: '1.1rem', margin: 0 }}>
+              YOLO AI 분석 완료! 해당 이미지와 분석 결과를 신고 접수하였습니다.
             </p>
           </div>
         </div>
@@ -460,7 +471,7 @@ const UploadPage: React.FC = () => {
       {/* 안내 메시지 */}
       {!uploadedFile && !uploading && (
         <div className="card" style={{ textAlign: 'center', padding: '2rem' }}>
-         
+
           <p style={{ fontSize: '1.1rem', color: '#666' }}>
             사진을 업로드하면 AI 분석이 시작됩니다.
           </p>

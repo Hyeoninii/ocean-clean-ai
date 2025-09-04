@@ -17,7 +17,6 @@ const HomePage: React.FC = () => {
         // 기본 데이터 설정
         setHomeData({
           title: "🌏 Ocean Clean AI",
-          description: "해양 쓰레기의 위험도를 분석하고 시각화하는 AI 기반 환경 플랫폼입니다.",
           features: [
             "🚢 선박 항로 및 어업 지역 보호",
             "🐟 해양 생태계 데이터 기반 보호",
@@ -44,14 +43,9 @@ const HomePage: React.FC = () => {
   return (
     <div className="page-container">
       <div className="grid grid-2" style={{ alignItems: 'center', gap: '3rem' }}>
-        <div>
-          <div className="page-title" style={{ textAlign: 'center', marginBottom: '1.5rem', fontSize: '3rem' }}>{homeData?.title}</div>
+          <div className="page-title" style={{ fontSize: '2.4rem', fontWeight: 'bold'}}>{homeData?.title}
           
-          <p style={{ fontSize: '1.2rem', lineHeight: '1.6', marginBottom: '2rem', color: '#ffffff' }}>
-            {homeData?.description}
-          </p>
-          
-          <div style={{ marginBottom: '2rem' }}>
+          <div style={{marginTop: '5rem', marginBottom: '2rem' }}>
             {homeData?.features.map((feature, index) => (
               <div key={index} style={{ 
                 marginBottom: '1rem', 
@@ -60,7 +54,7 @@ const HomePage: React.FC = () => {
                 backgroundColor: '#f8f9fa',
                 borderRadius: '5px',
                 borderLeft: '4px solid #667eea',
-                color: '#000000'
+                color: '#222' // 글자색 검정
               }}>
                 {feature}
               </div>
@@ -71,9 +65,13 @@ const HomePage: React.FC = () => {
             <button 
               className="button"
               onClick={() => window.location.href = '/upload'}
-              style={{ fontSize: '1.1rem', padding: '1rem 2rem' }}
+              style={{ 
+                fontSize: '1.1rem', 
+                padding: '1rem 2rem'
+              }}
             >
-              이미지 업로드하러 가기
+
+              이미지 업로드
             </button>
           </div>
         </div>
@@ -98,17 +96,17 @@ const HomePage: React.FC = () => {
           <div className="card" style={{ textAlign: 'center' }}>
             <div style={{ fontSize: '2rem', marginBottom: '1rem' }}>📊</div>
             <h4>데이터 현황</h4>
-            <p>해양 쓰레기 탐지 데이터를 필터링하고 통계를 확인할 수 있습니다.</p>
+            <p>해양 쓰레기 탐지 데이터 필터링</p>
           </div>
           <div className="card" style={{ textAlign: 'center' }}>
             <div style={{ fontSize: '2rem', marginBottom: '1rem' }}>🗺️</div>
             <h4>위험도 지도</h4>
-            <p>지도에서 위험도 등급에 따른 쓰레기 위치를 시각화합니다.</p>
+            <p>지도에서 위험도 등급에 따른 쓰레기 위치를 시각화</p>
           </div>
           <div className="card" style={{ textAlign: 'center' }}>
             <div style={{ fontSize: '2rem', marginBottom: '1rem' }}>🤖</div>
             <h4>AI 분석</h4>
-            <p>YOLO 모델을 사용하여 업로드된 이미지를 분석합니다.</p>
+            <p>YOLO 모델을 사용한 업로드된 이미지를 분석</p>
           </div>
         </div>
       </div>

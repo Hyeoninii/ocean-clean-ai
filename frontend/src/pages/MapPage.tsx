@@ -216,19 +216,19 @@ const MapPage: React.FC = () => {
             <div style={{ fontSize: '1.5rem', fontWeight: 'bold', color: '#dc3545' }}>
               {wasteData.filter(item => item.riskScore >= 4.0).length}
             </div>
-            <div>매우 높은 위험</div>
+            <div>고위험도</div>
           </div>
           <div style={{ textAlign: 'center' }}>
             <div style={{ fontSize: '1.5rem', fontWeight: 'bold', color: '#fd7e14' }}>
               {wasteData.filter(item => item.riskScore >= 3.5 && item.riskScore < 4.0).length}
             </div>
-            <div>높은 위험</div>
+            <div>중간 위험도</div>
           </div>
           <div style={{ textAlign: 'center' }}>
             <div style={{ fontSize: '1.5rem', fontWeight: 'bold', color: '#28a745' }}>
               {wasteData.filter(item => item.riskScore < 3.0).length}
             </div>
-            <div>낮은 위험</div>
+            <div>낮은 위험도</div>
           </div>
         </div>
       </div>

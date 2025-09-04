@@ -2,8 +2,7 @@
 __pycache__/
 *.py[cod]
 *$py.class
-.Python
-venv/
+.venv/
 requirements.txt
 .env
 

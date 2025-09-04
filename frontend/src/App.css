@@ -57,7 +57,7 @@ body {
 }
 
 .page-title {
-  font-size: 2.5rem;
+  font-size: 2.4rem;
   color: #f1f5f9;
   margin-bottom: 1.5rem;
   text-align: center;
@@ -74,15 +74,14 @@ body {
 }
 
 .button {
-  background: linear-gradient(135deg, #0891b2 0%, #0e7490 50%, #155e75 100%);
+  background: linear-gradient(90deg, #2193b0 0%, #6dd5ed 100%);
   color: white;
   border: none;
   padding: 0.75rem 1.5rem;
   border-radius: 5px;
   cursor: pointer;
   font-size: 1rem;
-  transition: all 0.3s ease;
-  box-shadow: 0 4px 15px rgba(8, 145, 178, 0.3);
+  transition: transform 0.2s ease, background 0.3s;
 }
 
 .button:hover {
@@ -167,5 +166,8 @@ body {
   
   .page-container {
     padding: 1.5rem;
+  }
+  .page-title {
+    font-size: 1.7rem;
   }
 }
